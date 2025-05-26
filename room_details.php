@@ -64,22 +64,18 @@ $_SESSION['room_name'] = $roomName;
         <a href="javascript:history.back()">Back</a>
         <table class="room-information-container">
             <tr>
-                <th colspan=4>Room Information</th>
+                <th colspan=2>Room Information</th>
             </tr>
             <tr>
-                <td>Room Name:</td>
-                <td><?php echo $roomName ?></td>
-                <td>Room Type:</td>
-                <td><?php echo $roomFloor ?></td>
+                <td><strong>Room Name:</strong><?php echo $roomName ?></td>
+                <td><strong>Room Type:</strong><?php echo $roomFloor ?></td>
             </tr>
             <tr>
-                <td>Floor Number:</td>
-                <td><?php echo $roomFloor ?></td>
-                <td>Capacity:</td>
-                <td><?php echo $roomCapacity ?></td>
+                <td><strong>Floor Number:</strong><?php echo $roomFloor ?></td>
+                <td><strong>Capacity:</strong><?php echo $roomCapacity ?></td>
             </tr>
             <tr>
-                <td colspan=4><a href='student_request_form.php'><button>Request Room</button></a></td>
+                <td colspan=2><a href='student_request_form.php'><button>Request Room</button></a></td>
             </tr>
         </table>
 

@@ -12,30 +12,30 @@ $stmt->bind_param("s", $_SESSION['room_name']);
 $stmt->execute();
 $schedDataResult = $stmt->get_result();
 
-$schedule = [];
+$schedule = [[], [], [], [], [], [], []]; // Initialize schedule for each day of the week
 if ($schedDataResult->num_rows > 0) {
     while ($schedData = $schedDataResult->fetch_assoc()) {
         $day = null;
         switch($schedData['day']){
-            case 'Monday':
+            case 'Sunday':
                 $day = 0;
                 break;
-            case 'Tuesday':
+            case 'Monday':
                 $day = 1;
                 break;
-            case 'Wednesday':
+            case 'Tuesday':
                 $day = 2;
                 break;
-            case 'Thursday':
+            case 'Wednesday':
                 $day = 3;
                 break;
-            case 'Friday':
+            case 'Thursday':
                 $day = 4;
                 break;
-            case 'Saturday':
+            case 'Friday':
                 $day = 5;
                 break;
-            case 'Sunday':
+            case 'Saturday':
                 $day = 6;
                 break;
             default:
@@ -44,7 +44,7 @@ if ($schedDataResult->num_rows > 0) {
         }
 
 
-        $schedule[] = ["day" => $day, "time_start" => $schedData['time_start'], "time_end" => $schedData['time_end']];
+        $schedule[$day][] = ["subject" => $schedData['subject'],"time_start" => $schedData['time_start'], "time_end" => $schedData['time_end']];
     }
 }
 
