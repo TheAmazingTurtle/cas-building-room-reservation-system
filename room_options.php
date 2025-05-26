@@ -1,0 +1,31 @@
+<?php
+if (__FILE__ === realpath($_SERVER['SCRIPT_FILENAME'])) {
+    header('HTTP/1.0 403 Forbidden');
+    exit('This file cannot be accessed directly.');
+}
+
+require 'db_connect.php';
+
+$stmt = $conn->prepare("SELECT * FROM room WHERE is_available = 1");
+$stmt->execute();
+$roomResult = $stmt->get_result();
+
+if ($roomResult -> num_rows > 0){
+    while($room = $roomResult -> fetch_assoc()){
+        echo    "<div class='room-option'><form action='room_details.php' method='POST'>".
+                    "<input type='hidden' name='room-name' value='".$room['room_name']."'>".
+                    "<p class='room-name'>".$room['room_name']."</p>".
+                    "<p class='room-type'>".$room['room_type']."</p>".
+                    "<p class='room-floor'>".$room['floor_number']."</p>".
+                    "<p class='room-capacity'>".$room['capacity']."</p>".
+                "</form></div>";     
+    }
+}
+else {
+    echo    "<div>".
+                "<p class='room-not-found'>No Available Room Found</p>".
+            "</div>";
+}
+
+$conn -> close();
+?>

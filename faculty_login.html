@@ -11,7 +11,9 @@
     <a href="index.html">Back</a>
 
     <h2>Faculty Login</h2>
-    <form action="faculty_dashboard.php" method="POST">
+    <form action="process_login.php" method="POST">
+        <input type="hidden" name="user_role" value="faculty">
+        
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required><br><br>
 

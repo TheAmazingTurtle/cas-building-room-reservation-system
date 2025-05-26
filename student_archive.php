@@ -7,30 +7,9 @@ if (!isset($_SESSION['user_id'])  || !isset($_SESSION['user_role']) ||  $_SESSIO
 
 require 'db_connect.php';
 
-$_SESSION['current_page'] = "dashboard";
+$_SESSION['current_page'] = "archive";
 $user_id = $_SESSION['user_id'];
 
-
-$stmt = $conn->prepare("SELECT * FROM student WHERE student_number = ?");
-$stmt->bind_param("s", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$studentData = $result->fetch_assoc();
-
-if (!$studentData) {
-    echo "Error: Student not found.";
-    exit();
-}
-
-$studentNumber = $studentData['student_number'];
-$name = $studentData['student_name'];
-$degreeProgram = $studentData['degree_program'];
-$yearLevel = $studentData['year_level'];
-$college = $studentData['college'];
-
-$_SESSION['name'] = $name;
-
-$conn -> close();
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +20,7 @@ $conn -> close();
     <title>Student Dashboard</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
+<body id="student-archive">
     <header>
         <h3>CAS Building Room Reservation System</h3>
         <nav>
@@ -51,19 +30,9 @@ $conn -> close();
             <a href="logout.php">Logout</a>
         </nav>
     </header>
-
     <main>
-        <div class="user-info">
-            <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
-            <div>
-                <p>Student Number: <?php echo $studentNumber; ?></p>
-                <p>Name: <?php echo $name; ?></p>
-                <p>Degree Program: <?php echo $degreeProgram; ?></p>
-                <p>Year Level: <?php echo $yearLevel; ?></p>
-            </div>
-        </div>
         <div class="student-reservations">
-            <h2>Upcoming Reservations</h2>
+            <h2>Archived Reservations</h2>
             <table>
                 <thead>
                     <tr>
@@ -85,9 +54,8 @@ $conn -> close();
             </table>
         </div>
     </main>
-
     <footer>
         <p>2023 Student Dashboard. All rights reserved.</p>
     </footer>
-</body> 
+</body>
 </html>
