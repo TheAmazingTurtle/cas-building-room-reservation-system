@@ -2,6 +2,7 @@ const textarea = document.getElementById("purpose");
 const charCount = document.getElementById("charCount");
 const facultyNames = [];
 const isFacultyAvailable = [];
+const roomSchedule = [];
 
 document.addEventListener("DOMContentLoaded", initializePage);
 
@@ -10,6 +11,7 @@ document.addEventListener("DOMContentLoaded", initializePage);
 function initializePage() {
     getFacultyNames();
     addAutocompleteFeature();
+    getRoomSchedule();
 }
 
 function getFacultyNames() {
@@ -19,8 +21,6 @@ function getFacultyNames() {
         facultyData.forEach(faculty => {
             facultyNames.push(faculty.name);
             isFacultyAvailable.push(faculty.is_available);
-
-            console.log(`Faculty Name: ${faculty.name}, Active: ${faculty.is_available}`);
         });
     });
 }
@@ -46,6 +46,16 @@ function addAutocompleteFeature() {
                 suggestionsBox.innerHTML = ""; // Clear suggestions after selection
             });
             suggestionsBox.appendChild(item);
+        });
+    });
+}
+
+function getRoomSchedule(){
+    fetch('room_schedule.php')
+    .then(response => response.json())
+    .then(roomSched => {
+        roomSched.forEach(schedule => {
+            roomSchedule.push(schedule);
         });
     });
 }

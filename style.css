@@ -38,10 +38,6 @@ main {
     align-items: center;
 }
 
-#student-request main{
-    align-items: center;
-}
-
     .user-info {
         width: 500px;
         display: flex;
@@ -184,10 +180,6 @@ main {
         border-collapse: collapse;
     }
 
-    .room-information-container > tr {
-
-    }
-
     .room-information-container td {
         width: 250px;
     }
@@ -255,7 +247,28 @@ main {
 
             .suggestion-item:hover {
                 background-color: #f0f0f0;
-            }       
+            }
+    
+    .reservation-details-container {
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+        .reservation-details-container > p > strong {
+            display: inline-block;
+            width: 45%;
+            text-align: right;
+        }
+
+        .reservation-details-container > .button-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
 
 footer {
     width: 100%;

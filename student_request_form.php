@@ -26,7 +26,9 @@ $roomName = $_SESSION['room_name'] ?? '';
         <h3>CAS Building Room Reservation System</h3>
     </header>
     <main>
+        <a href="javascript:history.back()">Back</a>
         <div class="room-request-form-container">
+            
             <h2>Room Request Form</h2>
             <form action="process_request.php" method="POST">
                 <div>
