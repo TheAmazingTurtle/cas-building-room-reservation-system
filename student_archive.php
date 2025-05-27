@@ -5,7 +5,7 @@ if (!isset($_SESSION['user_id'])  || !isset($_SESSION['user_role']) ||  $_SESSIO
     exit();
 }
 
-require 'db_connect.php';
+require 'db_connector.php';
 
 $_SESSION['current_page'] = "archive";
 $user_id = $_SESSION['user_id'];

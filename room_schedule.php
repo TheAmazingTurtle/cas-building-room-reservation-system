@@ -4,7 +4,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role']) || !isset($_S
     header("Location: index.html");
     exit();
 }
-require 'db_connect.php';
+require 'db_connector.php';
 
 
 $stmt = $conn->prepare("SELECT * FROM academic_schedule INNER JOIN faculty USING(faculty_id) WHERE room_name = ?");

@@ -6,6 +6,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role'])) {
 }
 
 $reservationId = $_GET['res_id'] ?? null;
+$action = $_GET['action'] ?? null;
 
 ?>
 
@@ -25,7 +26,17 @@ $reservationId = $_GET['res_id'] ?? null;
         <h1>Reservation Details</h1>
         <div class='reservation-details-container'>
             <?php
-                include 'reservation_details.php';
+                switch ($_SESSION['user_role']) {
+                    case 'student':
+                        include 'student_reservation_details.php';
+                        break;
+                    case 'faculty':
+                        include ($action == 'approve' ? 'student_reservation_details.php' : 'faculty_reservation_details.php');
+                        break;
+                    default:
+                        $_SESSION['current_page'] = 'dashboard';
+                        break;
+                }
             ?>
         </div>
     </main>

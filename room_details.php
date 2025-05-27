@@ -10,7 +10,7 @@ $_SESSION['current_page'] = "reservation-details";
 
 // Handle POST submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    require 'db_connect.php';
+    require 'db_connector.php';
 
     $roomName = $_POST['room-name'];
 

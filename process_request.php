@@ -1,6 +1,6 @@
 <?php
 
-require 'db_connect.php';
+require 'db_connector.php';
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     echo "Error: Invalid request method.";

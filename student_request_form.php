@@ -5,7 +5,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role'])) {
     exit();
 }
 
-require 'db_connect.php';
+require 'db_connector.php';
 
 $userId = $_SESSION['user_id'];
 $userName = $_SESSION['name'] ?? '';

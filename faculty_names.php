@@ -1,6 +1,6 @@
 <?php
 
-require 'db_connect.php';
+require 'db_connector.php';
 
 $stmt = $conn->prepare("SELECT * FROM faculty");
 $stmt->execute();

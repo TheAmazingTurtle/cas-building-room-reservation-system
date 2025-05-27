@@ -20,21 +20,20 @@ switch ($_SESSION['current_page']){
         break;
 }
 
-$stmt = $conn->prepare("SELECT student_reservation_id, student_name, room_name, faculty_name, time_start, time_end, request_date, is_active, is_faculty_approved, is_admin_approved 
-                        FROM student_reservation 
-                        INNER JOIN student USING(student_number) 
-                        INNER JOIN faculty USING(faculty_id) 
-                        WHERE student_number = ?$restriction");
+$stmt = $conn->prepare("SELECT faculty_reservation_id, room_name, time_start, time_end, request_date, is_active, is_admin_approved
+                        FROM faculty_reservation
+                        WHERE faculty_id = ?$restriction");
 
 $stmt->bind_param("s", $user_id);
 $stmt->execute();
-$studentReservationResult = $stmt->get_result();
+$facultyReservationResult = $stmt->get_result();
 
 
-if ($studentReservationResult -> num_rows > 0){
+if ($facultyReservationResult -> num_rows > 0){
 
     $now = new DateTime();
-    while ($reservation = $studentReservationResult -> fetch_assoc()){
+    while ($reservation = $facultyReservationResult -> fetch_assoc()){
+        $reservationId = $reservation['faculty_reservation_id'];
 
         $status = null;
         $end = new DateTime($reservation['time_end']);
@@ -43,13 +42,6 @@ if ($studentReservationResult -> num_rows > 0){
         $isCancellable = FALSE;
         if (!$reservation["is_active"]){
             $status = "Cancelled";
-        }
-        else if (is_null($reservation["is_faculty_approved"])){
-            $status = "Awaiting FIC Approval";
-            $isCancellable = TRUE;
-        }
-        else if (!$reservation["is_faculty_approved"]){
-            $status = "Denied by FIC";
         }
         else if (is_null($reservation["is_admin_approved"])){
             $status = "Awaiting Admin Approval";
@@ -66,20 +58,20 @@ if ($studentReservationResult -> num_rows > 0){
             $status = "Completed";
         }
 
-        $actionButtons =    "<a href='reservation.php?res_id=". $reservation["student_reservation_id"] ."'><button>More Details</button></a>";
+        $actionButtons = "";
 
 
         switch ($_SESSION['current_page']){
             case 'dashboard':
                 $actionButtons =    $actionButtons."<form action='archive_reservation.php' method='post'>".
-                                        "<input type='text' style='display:none;' name='reservation-id' value='".$reservation["student_reservation_id"]."'>".
+                                        "<input type='text' style='display:none;' name='reservation-id' value='$reservationId'>".
                                         "<input type='text' style='display:none;' name='action-mode' value='1'>".
                                         "<button type='submit'>Archive</button>".
                                     "</form>";
                 break;
             case 'archive':
                 $actionButtons =    $actionButtons."<form action='archive_reservation.php' method='post'>".
-                                        "<input type='text' style='display:none;' name='reservation-id' value='".$reservation["student_reservation_id"]."'>".
+                                        "<input type='text' style='display:none;' name='reservation-id' value='$reservationId'>".
                                         "<input type='text' style='display:none;' name='action-mode' value='0'>".
                                         "<button type='submit'>Restore</button>".
                                     "</form>";
@@ -90,27 +82,31 @@ if ($studentReservationResult -> num_rows > 0){
         
         if ($isCancellable){
             $actionButtons =   $actionButtons."<form action='cancel_reservation.php' method='post'>".
-                                    "<input type='text' style='display:none;' name='reservation-id' value='".$reservation["student_reservation_id"]."'>".
+                                    "<input type='text' style='display:none;' name='reservation-id' value='$reservationId'>".
                                     "<button type='submit'>Cancel</button>".
                                 "</form>";
         }
 
 
-        echo    "<tr>".
-                    "<td>".$reservation["student_reservation_id"]."</td>".
-                    "<td>".$reservation["student_name"]."</td>".
-                    "<td>".$reservation["room_name"]."</td>".
-                    "<td>".$reservation["faculty_name"]."</td>".
-                    "<td>".$reservation["time_start"]." -> ".$reservation["time_end"]."</td>".
-                    "<td>".$reservation["request_date"]."</td>".
-                    "<td>$status</td>".
-                    "<td>$actionButtons</td>".
-                "</tr>"; 
+        $timeStart =  formatDateTime($reservation["time_start"]);
+        $requestDate = formatDate($reservation["request_date"]);
+
+        echo    "<div class='scroll-item' onclick=\"window.location.href='reservation.php?res_id={$reservation['faculty_reservation_id']}&action=more_details'\">".
+                    "<p>$reservationId</p>".
+                    "<p>".$reservation["room_name"]."</p>".
+                    "<p>$timeStart</p>".
+                    "<p>$requestDate</p>".
+                    "<p>$status</p>".
+                    "<div>$actionButtons</div>".
+                "</div>"; 
     }
 }
 else {
-    echo '<tr><td colspan="8">No reservations found.</td></tr>';
+    echo    "<div>".
+                "<p>No Faculty-in-Charge request at the moment.</p>".
+            "</div>";
 }
 
 $conn -> close();
+
 ?>

@@ -5,7 +5,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role']) || !isset($_S
     exit();
 }
 
-require 'db_connect.php';
+require 'db_connector.php';
 
 $schedule = [];
 

@@ -4,7 +4,7 @@ if (__FILE__ === realpath($_SERVER['SCRIPT_FILENAME'])) {
     exit('This file cannot be accessed directly.');
 }
 
-require 'db_connect.php';
+require 'db_connector.php';
 
 $stmt = $conn->prepare("SELECT asset_name, quantity FROM room INNER JOIN contains USING(room_name) INNER JOIN asset USING(asset_id) WHERE room_name = ?");
 $stmt->bind_param("s", $roomName);

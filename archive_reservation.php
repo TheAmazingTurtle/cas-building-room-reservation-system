@@ -31,7 +31,7 @@ switch($_SESSION['user_role']){
 }
 
 function manage_student_archive(){
-    require 'db_connect.php';
+    require 'db_connector.php';
 
     global $redirectPage;
     $resId = $_POST['reservation-id'];

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'db_connect.php';
+require 'db_connector.php';
 
 
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
@@ -49,14 +49,14 @@ try {
     } else {
         $error = "Invalid username or password.";
         echo $error;
-        //header("Location: ".$role."_login.html");
+        header("Location: ".$role."_login.html");
     }
 
-    // exit();
+    exit();
 }
 catch (Exception $e) {
     echo $e;
-    // header("Location: ".$role."_login.html");
-    // exit();
+    header("Location: ".$role."_login.html");
+    exit();
 }
 ?>
