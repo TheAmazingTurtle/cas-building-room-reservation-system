@@ -178,30 +178,7 @@ function checkScheduleConflict() {
         const dayScheduleEnd = new Date(dateStart + " " + daySchedule.time_end);
 
         if (dayScheduleStart < schedule.end && dayScheduleEnd > schedule.start) {
-            const sheduleDetailContainer = document.createElement("details");
-            const containerTitle = document.createElement("summary");
-
-            const instructor = document.createElement("p");
-            instructor.innerText = `Instructor: ${daySchedule.faculty}`;
-
-            const subject = document.createElement("p");
-            subject.innerText = `Subject: ${daySchedule.subject}`;
-
-            const timeStart = document.createElement("p");
-            timeStart.innerText = `Time Start: ${convertTo12Hour(daySchedule.time_start)}`;
-
-            const timeEnd = document.createElement("p");
-            timeEnd.innerText = `Time End: ${convertTo12Hour(daySchedule.time_end)}`;
-
-            containerTitle.innerText = `Conflict with ${daySchedule.subject} on ${dateEnd}`;
-            
-            sheduleDetailContainer.appendChild(containerTitle);
-            sheduleDetailContainer.appendChild(instructor);
-            sheduleDetailContainer.appendChild(subject);
-            sheduleDetailContainer.appendChild(timeStart);
-            sheduleDetailContainer.appendChild(timeEnd);
-
-            conflictContainer.appendChild(sheduleDetailContainer);
+            insertConfictDetails(conflictContainer, daySchedule, dateStart);
             hasConflict = true;
         }
 
@@ -213,49 +190,26 @@ function checkScheduleConflict() {
             const dayScheduleEnd = new Date(dateEnd + " " + daySchedule.time_end);
 
             if (dayScheduleStart < schedule.end && dayScheduleEnd > schedule.start) {
-                const sheduleDetailContainer = document.createElement("details");
-                const containerTitle = document.createElement("summary");
-
-                containerTitle.innerText = `Conflict with ${daySchedule.room_name} on ${dateEnd}`;
-
-                const instructor = document.createElement("p");
-                instructor.innerText = `Instructor: ${daySchedule.faculty}`;
-
-                const subject = document.createElement("p");
-                subject.innerText = `Subject: ${daySchedule.subject}`;
-
-                const timeStart = document.createElement("p");
-                timeStart.innerText = `Time Start: ${convertTo12Hour(daySchedule.time_start)}`;
-
-                const timeEnd = document.createElement("p");
-                timeEnd.innerText = `Time End: ${convertTo12Hour(daySchedule.time_end)}`;
-                
-                sheduleDetailContainer.appendChild(containerTitle);
-                sheduleDetailContainer.appendChild(instructor);
-                sheduleDetailContainer.appendChild(subject);
-                sheduleDetailContainer.appendChild(timeStart);
-                sheduleDetailContainer.appendChild(timeEnd);
-
-                conflictContainer.appendChild(sheduleDetailContainer);
+                insertConfictDetails(conflictContainer, daySchedule, dateEnd);  
                 hasConflict = true;
             }
         });
     }
 
-    approvedReservationSchedule.forEach(resSchedule => {
-        if (resSchedule.start < schedule.end && resSchedule.end > schedule.start) {
-            const roomDetailsLink = `reservation_details.php?res_id=${resSchedule.resId}&role=${resSchedule.role}`;
-            outputPrompt.innerHTML += `<br>- Conflict with approved reservation by ${resSchedule.requestee}: <a href="${roomDetailsLink}">View Details</a>`;
-            hasConflict = true;
-        }
-    });
+    // approvedReservationSchedule.forEach(resSchedule => {
+    //     if (resSchedule.start < schedule.end && resSchedule.end > schedule.start) {
+    //         const roomDetailsLink = `reservation_details.php?res_id=${resSchedule.resId}&role=${resSchedule.role}`;
+    //         outputPrompt.innerHTML += `<br>- Conflict with approved reservation by ${resSchedule.requestee}: <a href="${roomDetailsLink}">View Details</a>`;
+    //         hasConflict = true;
+    //     }
+    // });
 
-    pendingReservationSchedule.forEach(resSchedule => {
-        if (resSchedule.start < schedule.end && resSchedule.end > schedule.start) {
-            const roomDetailsLink = `reservation_details.php?res_id=${resSchedule.resId}&role=${resSchedule.role}`;
-            outputPrompt.innerHTML += `<br>- Warning Conflict with pending reservation by ${resSchedule.requestee}: <a href="${roomDetailsLink}">View Details</a>`;
-        }
-    });
+    // pendingReservationSchedule.forEach(resSchedule => {
+    //     if (resSchedule.start < schedule.end && resSchedule.end > schedule.start) {
+    //         const roomDetailsLink = `reservation_details.php?res_id=${resSchedule.resId}&role=${resSchedule.role}`;
+    //         outputPrompt.innerHTML += `<br>- Warning Conflict with pending reservation by ${resSchedule.requestee}: <a href="${roomDetailsLink}">View Details</a>`;
+    //     }
+    // });
 
     if (!hasConflict) {
         outputPrompt.innerHTML = "No Conflict Found";
@@ -290,6 +244,33 @@ function verifySubmission(event) {
 
     // If all checks pass, submit the form
     document.getElementById("student-request-form").submit();
+}
+
+function insertConfictDetails(conflictContainer, daySchedule, date) {
+    const sheduleDetailContainer = document.createElement("details");
+    const containerTitle = document.createElement("summary");
+
+    const instructor = document.createElement("p");
+    instructor.innerText = `Instructor: ${daySchedule.faculty}`;
+
+    const subject = document.createElement("p");
+    subject.innerText = `Subject: ${daySchedule.subject}`;
+
+    const timeStart = document.createElement("p");
+    timeStart.innerText = `Time Start: ${convertTo12Hour(daySchedule.time_start)}`;
+
+    const timeEnd = document.createElement("p");
+    timeEnd.innerText = `Time End: ${convertTo12Hour(daySchedule.time_end)}`;
+
+    containerTitle.innerText = `Conflict with ${daySchedule.subject} on ${convertToMonthDayYear(date)}`;
+    
+    sheduleDetailContainer.appendChild(containerTitle);
+    sheduleDetailContainer.appendChild(instructor);
+    sheduleDetailContainer.appendChild(subject);
+    sheduleDetailContainer.appendChild(timeStart);
+    sheduleDetailContainer.appendChild(timeEnd);
+
+    conflictContainer.appendChild(sheduleDetailContainer);
 }
 
 function convertTo12Hour(timeStr) {
