@@ -1,6 +1,12 @@
 <?php
+session_start();
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role'])) {
+    header("Location: index.html");
+    exit();
+}
 
 unset($_SESSION['room_data']);
+$_SESSION['current_page'] = "request";
 
 ?>
 

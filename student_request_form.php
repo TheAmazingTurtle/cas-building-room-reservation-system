@@ -27,52 +27,60 @@ $roomName = $_SESSION['room_name'] ?? '';
     </header>
     <main>
         <a href="javascript:history.back()">Back</a>
-        <div class="room-request-form-container">
-            
-            <h2>Room Request Form</h2>
-            <form id='student-request-form' action="process_request.php" method="POST">
-                <div>
-                    <label for="room-name">Student Number:</label>
-                    <input type="text" id="student-number" name="student-number" value='<?php echo $userId; ?>' readonly>
-                </div>
+        <div>
+            <h2>Room Request</h2>
+            <div class="room-request-form-container">
+                <form id='student-request-form' action="process_request.php" method="POST">
+                    <h3>Form</h3>
 
-                <div>
-                    <label for="room-name">Student Name:</label>
-                    <input type="text" id="student-name" name="student-name" value='<?php echo $userName; ?>' readonly>
-                </div>
-                
-                <div>
-                    <label for="room-name">Room Name:</label>
-                    <input type="text" id="room-name" name="room-name" value='<?php echo $roomName; ?>' readonly>
-                </div>
+                    <div>
+                        <label for="student-number">Student Number:</label>
+                        <input type="text" id="student-number" name="student-number" value='<?php echo $userId; ?>' readonly>
+                    </div>
 
-                <div>
-                    <label for="faculty-name">Faculty-in-Charge:</label>
-                    <input type="text" id="faculty-input" name="faculty-name" required>
-                    <div><div id="suggestions" class="suggestions-box"></div></div>
-                </div>
+                    <div>
+                        <label for="student-name">Student Name:</label>
+                        <input type="text" id="student-name" name="student-name" value='<?php echo $userName; ?>' readonly>
+                    </div>
+                    
+                    <div>
+                        <label for="room-name">Room Name:</label>
+                        <input type="text" id="room-name" name="room-name" value='<?php echo $roomName; ?>' readonly>
+                    </div>
 
-                <div>
-                    <label for="reservation-start">Date & Time Start:</label>
-                    <input type="datetime-local" id="reservation-start" name="reservation-start" required>
-                </div>
+                    <div>
+                        <label for="faculty-input">Faculty-in-Charge:</label>
+                        <input type="text" id="faculty-input" name="faculty-name" required>
+                        <div><div id="suggestions" class="suggestions-box"></div></div>
+                    </div>
 
-                <div>
-                    <label for="reservation-end">Date & Time End:</label>
-                    <input type="datetime-local" id="reservation-end" name="reservation-end" required>
-                </div>
+                    <div>
+                        <label for="reservation-start">Date & Time Start:</label>
+                        <input type="datetime-local" id="reservation-start" name="reservation-start" required>
+                    </div>
 
-                <div class="conflict-container">
-                    <p id="conflict-message"></p>
-                </div>
+                    <div>
+                        <label for="reservation-end">Date & Time End:</label>
+                        <input type="datetime-local" id="reservation-end" name="reservation-end" required>
+                    </div>
 
+                    <div>
+                        <label for="purpose">Purpose:</label>
+                        <textarea id="purpose" name="purpose" rows="4" cols="40" placeholder="Enter your purpose here..." required></textarea>
+                    </div>
+
+                    <div>
+                        <p id="error-prompt"></p>
+                    </div>
+                    
+                    <button type="reset">Reset</button>
+                    <button type="submit">Submit</button>
+                </form>
                 <div>
-                    <label for="purpose">Purpose:</label>
-                    <textarea id="purpose" name="purpose" rows="4" cols="40" placeholder="Enter your purpose here..." required></textarea>
+                    <h3>Conflicts</h3>
+                    <div id="conflict-container"><div>
                 </div>
-                
-                <button type="submit">Submit</button>
-            </form>
+            </div>
         </div>
     </main>
     <footer>

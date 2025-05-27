@@ -66,7 +66,7 @@ if ($studentReservationResult -> num_rows > 0){
             $status = "Completed";
         }
 
-        $actionButtons =    "<a href='reservation_details.php?res_id=". $reservation["student_reservation_id"] ."'><button>More Details</button></a>";
+        $actionButtons =    "<a href='reservation.php?res_id=". $reservation["student_reservation_id"] ."'><button>More Details</button></a>";
 
 
         switch ($_SESSION['current_page']){

@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role']) || !isset($_S
 require 'db_connect.php';
 
 
-$stmt = $conn->prepare("SELECT * FROM academic_schedule WHERE room_name = ?");
+$stmt = $conn->prepare("SELECT * FROM academic_schedule INNER JOIN faculty USING(faculty_id) WHERE room_name = ?");
 $stmt->bind_param("s", $_SESSION['room_name']);
 $stmt->execute();
 $schedDataResult = $stmt->get_result();
@@ -44,7 +44,7 @@ if ($schedDataResult->num_rows > 0) {
         }
 
 
-        $schedule[$day][] = ["subject" => $schedData['subject'],"time_start" => $schedData['time_start'], "time_end" => $schedData['time_end']];
+        $schedule[$day][] = ["subject" => $schedData['subject'],"faculty" => $schedData['faculty_name'], "time_start" => $schedData['time_start'], "time_end" => $schedData['time_end']];
     }
 }
 
