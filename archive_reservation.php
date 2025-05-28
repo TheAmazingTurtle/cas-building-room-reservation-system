@@ -19,40 +19,43 @@ switch($_SESSION['current_page']){
         break;
 }
 
-switch($_SESSION['user_role']){
-    case 'student':
-        $redirectPage = $_SESSION['user_role'].$redirectPage;
-        manage_student_archive();
-        break;
-    default:
-        echo 'Unrecognized role';
-        header('Location: index.html');
-        exit();
+if ($_SESSION['user_role'] != 'student' && $_SESSION['user_role'] != 'faculty'){
+    echo 'Unrecognized role';
+    exit();
 }
 
-function manage_student_archive(){
-    require 'db_connector.php';
+require 'db_connector.php';
 
-    global $redirectPage;
-    $resId = $_POST['reservation-id'];
-    $archiveMode = $_POST['action-mode'];
+$redirectPage = $_SESSION['user_role'].$redirectPage;
 
-    try {
-        $conn->begin_transaction();
+$resId = $_POST['reservation-id'];
+$archiveMode = $_POST['action-mode'];
 
-        $stmt = $conn->prepare("UPDATE student_reservation SET is_archived = ? WHERE student_reservation_id = ? ;");
-        $stmt->bind_param("is", $archiveMode, $resId);
-        $stmt->execute();
+    
 
-        $conn->commit();
-        header("Location: $redirectPage");
-        exit();
-    } 
-    catch (ExceptionType $e) {
-        $conn->rollback();
-        echo "Error: " . $e->getMessage();
-        exit();
+try {
+    $conn->begin_transaction();
+
+    $updateReservationSql = null;
+    switch($_SESSION['user_role']){
+        case 'student':
+            $updateReservationSql = "UPDATE student_reservation SET is_archived = ? WHERE student_reservation_id = ? ;";
+        case 'faculty':
+            $updateReservationSql = "UPDATE faculty_reservation SET is_archived = ? WHERE faculty_reservation_id = ? ;";
     }
+
+    $stmt = $conn->prepare($updateReservationSql);
+    $stmt->bind_param("is", $archiveMode, $resId);
+    $stmt->execute();
+
+    $conn->commit();
+    header("Location: $redirectPage");
+    exit();
+} 
+catch (ExceptionType $e) {
+    $conn->rollback();
+    echo "Error: " . $e->getMessage();
+    exit();
 }
 
 

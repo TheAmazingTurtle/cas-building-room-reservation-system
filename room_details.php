@@ -5,41 +5,35 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role'])) {
     exit();
 }
 
-$_SESSION['current_page'] = "reservation-details";
+$_SESSION['current_page'] = "room-details";
 
+require 'db_connector.php';
 
-// Handle POST submission
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    require 'db_connector.php';
+$roomName = $_GET['room_name'] ?? null;
 
-    $roomName = $_POST['room-name'];
-
-    $stmt = $conn->prepare("SELECT * FROM room WHERE room_name = ?");
-    $stmt->bind_param("s", $roomName);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $roomData = $result->fetch_assoc();
-
-    if (!$roomData) {
-        echo "Error: room not found.";
-        exit();
-    }
-
-    $_SESSION['room_data'] = $roomData;
-
-    $conn->close();
-
-    // Redirect after storing session data
-    header("Location: room_details.php");
-    exit();
-}
-
-$roomData = $_SESSION['room_data'] ?? null;
+$stmt = $conn->prepare("SELECT * FROM room WHERE room_name = ?");
+$stmt->bind_param("s", $roomName);
+$stmt->execute();
+$result = $stmt->get_result();
+$roomData = $result->fetch_assoc();
 
 if (!$roomData) {
-    echo "No room selected.";
+    echo "Error: room not found.";
     exit();
 }
+
+$conn->close();
+
+$requestFormLink = null;
+switch($_SESSION['user_role']){
+    case 'student':
+        $requestFormLink = 'student_request_form.php';
+        break;
+    case 'faculty':
+        $requestFormLink = 'faculty_request_form.php';
+        break;
+}
+
 
 $roomName = $roomData['room_name'];
 $roomType = $roomData['room_type'];
@@ -75,7 +69,7 @@ $_SESSION['room_name'] = $roomName;
                 <td><strong>Capacity:</strong><?php echo $roomCapacity ?></td>
             </tr>
             <tr>
-                <td colspan=2><a href='student_request_form.php'><button>Request Room</button></a></td>
+                <td colspan=2><a href='<?php echo $requestFormLink; ?>'><button>Request Room</button></a></td>
             </tr>
         </table>
 

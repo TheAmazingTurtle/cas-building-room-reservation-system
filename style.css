@@ -132,29 +132,21 @@ main {
     }
         .request-room-option-container > div {
             width: 100%;
-            
+
+            padding: 10px;
+
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: row;
+
+            text-align: center;
+            cursor: pointer;
         }
 
-            .request-room-option-container > div > form {
-                width: 100%;
-
-                padding: 10px;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: row;
-
-                text-align: center;
-                cursor: pointer;
-            }
-
-            .request-room-option-container > div > form:hover {
-                background-color: blueviolet;
-            }
+        .request-room-option-container > div:hover {
+            background-color: blueviolet;
+        }
 
             .room-name {
                 width: 30%;
@@ -286,15 +278,15 @@ main {
     
     /* Faculty  */
 
-    .faculty-dashboard-container {
+    .faculty-container {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-evenly;
 
         width: 1200px;
     }
 
-        .faculty-dashboard-header {
+        .faculty-header {
             display: flex;
             flex-direction: row;
 
@@ -304,12 +296,12 @@ main {
             margin: 0 10px;
         }
 
-            .faculty-dashboard-header > h3 {
+            .faculty-header > h3 {
                 text-align: center;
                 font-size: 12px;
             }
 
-            .faculty-reservations h3, .faculty-reservations p, .faculty-reservations > div > div > div {
+            .faculty-reservations h3, .faculty-reservations p, .faculty-reservations > div > div > div, .faculty-archive h3, .faculty-archive p, .faculty-archive > div > div > div {
                 width: calc(100% / 6);
                 text-align: center;
             }
@@ -318,14 +310,20 @@ main {
                 width: 20%;
             }
 
-        .faculty-dashboard-container > div{
+        .faculty-container > div{
             display: flex;
             flex-direction: column;
+        }
 
+        .faculty-reservations, .faculty-approval-requests {
             width: 48%;
         }
 
-            .faculty-dashboard-scrollable{
+        .faculty-archive {
+            width: 60%;
+        }
+
+            .faculty-scrollable{
                 display: flex;
                 flex-direction: column;
 
@@ -357,6 +355,16 @@ main {
                         display: flex;
                         flex-direction: column;
                     }
+
+                .no-item-prompt {
+                    box-sizing: border-box;
+                    width: calc(100% - 20px);
+                    margin: 10px 10px;
+                }
+
+                .no-item-prompt p{
+                    width: 100%;
+                }
 
             
 

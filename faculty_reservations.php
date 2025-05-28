@@ -102,8 +102,8 @@ if ($facultyReservationResult -> num_rows > 0){
     }
 }
 else {
-    echo    "<div>".
-                "<p>No Faculty-in-Charge request at the moment.</p>".
+    echo    "<div class='no-item-prompt'>".
+                "<p>Table Cleared</p>".
             "</div>";
 }
 

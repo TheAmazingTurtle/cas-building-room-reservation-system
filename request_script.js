@@ -1,13 +1,3 @@
-document.addEventListener('DOMContentLoaded', initializePage);
-
-function initializePage(){
-    document.querySelectorAll('.room-option > form').forEach(form => {
-        form.addEventListener('click', function () {
-            this.submit();
-        });
-    });
-}
-
 function filterRoomOptions(){
     const selectedRoomType = new Set();
     const selectedRoomFloor = new Set();

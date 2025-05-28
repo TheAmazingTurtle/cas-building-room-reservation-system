@@ -24,7 +24,8 @@ function initializePage() {
     document.getElementById('reservation-start').addEventListener('change', checkScheduleConflict);
     document.getElementById('reservation-end').addEventListener('change', checkScheduleConflict);
 
-    document.getElementById("student-request-form").addEventListener("submit", verifySubmission);
+    document.getElementById("student-request-form").addEventListener("submit", verifyStudentSubmission);
+    document.getElementById("faculty-request-form").addEventListener("submit", verifyFacultySubmission);
 
     checkScheduleConflict();
 }
@@ -219,7 +220,7 @@ function checkScheduleConflict() {
     }
 }
 
-function verifySubmission(event) {
+function verifyStudentSubmission(event) {
     event.preventDefault();
 
     const time_start = document.getElementById("reservation-start").value;
@@ -244,6 +245,27 @@ function verifySubmission(event) {
 
     // If all checks pass, submit the form
     document.getElementById("student-request-form").submit();
+}
+
+function verifyFacultySubmission(event) {
+    event.preventDefault();
+
+    const time_start = document.getElementById("reservation-start").value;
+    const time_end = document.getElementById("reservation-end").value;
+    const purpose = document.getElementById("purpose").value;
+
+    if (!time_start || !time_end || !purpose) {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    if (hasConflict) {
+        alert("There is a scheduling conflict. Please resolve it before submitting.");
+        return;
+    }
+
+    // If all checks pass, submit the form
+    document.getElementById("faculty-request-form").submit();
 }
 
 function insertConfictDetails(conflictContainer, daySchedule, date) {

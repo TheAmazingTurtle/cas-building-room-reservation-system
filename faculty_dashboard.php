@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role'])) {
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role']) ||  $_SESSION['user_role'] != 'faculty' ) {
     header("Location: index.html");
     exit();
 }
@@ -24,6 +24,8 @@ if (!$facultyData) {
 $facultyId = $facultyData['faculty_id'];
 $name = $facultyData['faculty_name'];
 $division = $facultyData['division'];
+
+$_SESSION['name'] = $name;
 
 $conn -> close();
 
@@ -65,10 +67,10 @@ function formatDateTime($dateTime){
                 <p>Division: <?php echo $division; ?></p>
             </div>
         </div>
-        <div class="faculty-dashboard-container">
+        <div class="faculty-container">
             <div class="faculty-reservations">
                 <h2>Upcoming Reservations</h2>
-                <div class="faculty-dashboard-header">
+                <div class="faculty-header">
                     <h3>Reservation ID</h3>
                     <h3>Room Name</h3>
                     <h3>Schedule Start</h3>
@@ -76,7 +78,7 @@ function formatDateTime($dateTime){
                     <h3>Status</h3>
                     <h3>Action</h3>
                 </div>
-                <div class="faculty-dashboard-scrollable">
+                <div class="faculty-scrollable">
                     <?php
                         include 'faculty_reservations.php';
                     ?>
@@ -85,14 +87,14 @@ function formatDateTime($dateTime){
 
             <div class="faculty-approval-requests">
                 <h2>Approval Requests</h2>
-                <div class="faculty-dashboard-header">
+                <div class="faculty-header">
                     <h3>Reservation ID</h3>
                     <h3>Requestee</h3>
                     <h3>Room Name</h3>
                     <h3>Schedule Start</h3>
                     <h3>Date Requested</h3>
                 </div>
-                <div class="faculty-dashboard-scrollable">
+                <div class="faculty-scrollable">
                     <?php
                         include 'faculty_approval_request.php';
                     ?>
