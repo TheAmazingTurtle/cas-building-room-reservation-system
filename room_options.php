@@ -13,7 +13,6 @@ $roomResult = $stmt->get_result();
 if ($roomResult -> num_rows > 0){
     while($room = $roomResult -> fetch_assoc()){
         echo    "<div class='room-option' onclick=\"window.location.href='room_details.php?room_name={$room['room_name']}'\">".
-                    "<input type='hidden' name='room-name' value='".$room['room_name']."'>".
                     "<p class='room-name'>".$room['room_name']."</p>".
                     "<p class='room-type'>".$room['room_type']."</p>".
                     "<p class='room-floor'>".$room['floor_number']."</p>".
