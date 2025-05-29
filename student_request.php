@@ -16,7 +16,7 @@ $_SESSION['current_page'] = "request";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Request</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="requestStyle.css">
 </head>
 <body id="student-request">
     <header>
@@ -35,11 +35,17 @@ $_SESSION['current_page'] = "request";
             <div>
                 <search>
                     <form>
-                        <input class="request-search-bar" placeholder="Search">
+                        <input class="request-search-bar" placeholder="Search a Room">
                         <button type="submit">Search</button>
                     </form>
                 </search>
                 <div class="request-room-option-container">
+                     <div class="header-category">
+                        <h1 class="room-name">Room Number</h1>
+                        <h1 class="room-type">Room Type</h1>
+                        <h1 class="room-floor">Floor Number</h1>
+                        <h1 class="room-capacity">Capacity</h1>
+                    </div>
                     <?php
                         include 'room_options.php';
                     ?>

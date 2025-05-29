@@ -109,7 +109,7 @@ if ($studentReservationResult -> num_rows > 0){
     }
 }
 else {
-    echo '<tr><td colspan="8">No reservations found.</td></tr>';
+    echo '<tr><td class="no-reservations" colspan="8">No reservations found.</td></tr>';
 }
 
 $conn -> close();

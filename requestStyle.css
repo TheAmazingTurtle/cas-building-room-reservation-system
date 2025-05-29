@@ -1,0 +1,256 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+header {
+  background-color: #f4d7d7;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h3 {
+  font-size: 30px;
+  color: #333;
+}
+
+nav a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: #555;
+  font-size: 18px;
+  background-color: #f6eaea;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #e9c5c5;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+}
+
+.request-search-body {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+ 
+.request-search-bar {
+  width: 250px;
+  padding: 0.5rem 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px 0 0 8px;
+  font-size: 1rem;
+}
+
+form button {
+  padding: 0.5rem 1rem;
+  border: 2px solid #ddd;
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+  background-color: #f7dada;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background-color: #fbb;
+}
+
+.request-filter-container {
+  background-color: #fff4f4;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 250px;
+}
+
+.request-room-option-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1000px;
+    height: 600px;
+    gap: 10px;
+}
+
+.header-category {
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-size: 0.5rem;
+    font-weight: bold; 
+    margin-top: 20px;
+    
+}
+
+.header-category h1 {
+    text-align: center;
+}
+
+
+.request-room-option-container > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.room-option {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.room-option:hover {
+  background-color: rgba(173, 216, 230, 0.3); /* light blue tint */
+  border-radius: 8px; /* optional */
+}
+
+
+.room-name {
+    width: 30%;
+}
+
+.room-type {
+    width: 40%;
+}
+
+.room-floor {
+    width: 20%;
+}
+
+.room-capacity {
+    width: 10%;
+}
+
+
+.room-not-found {
+    width: 100%;
+}
+    
+.room-information-container {
+    border-collapse: collapse;
+}
+
+.room-information-container td {
+    width: 500px;
+}
+
+.room-information-container td > strong {
+    display: inline-block;
+    width: 50%;
+    text-align: right;
+}
+
+.room-information-container tr:nth-child(4) > td {
+    text-align: center;
+}
+
+
+.class-schedule-container {
+    width: 1000px;
+    text-align: center;
+    border-collapse: collapse;
+    height: 750px;
+}
+
+.room-request-form-container {
+    width: 700px;
+    height: 700px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.room-request-form-container > form {
+    width: 48%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.room-request-form-container > div {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.room-request-form-container > form > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.room-request-form-container > form > div > label {
+    width: 150px;
+}
+
+.room-request-form-container > form > div > input {
+    width: 200px;
+}
+
+.room-request-form-container > form > div > textarea{
+    resize: none;
+}
+
+.request-filter-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.request-filter-categories {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.request-filter-categories > div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+footer {
+  text-align: center;
+  font-size: 20px !important;
+  padding: 15px;
+  color: #777;
+}
+
+
