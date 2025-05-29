@@ -81,18 +81,16 @@ if ($reservationResult->num_rows > 0) {
         case 'admin':
             echo    "<form action='approve_reservation.php' method='POST'>".
                         "<input class='hidden' name='reservation-id' value=$reservationId>".
-                        "<button type=submit>Approve</button>".
-                    "</form>".
-                    "<form action='deny_reservation.php' method='POST'>".
-                        "<input class='hidden' name='reservation-id' value=$reservationId>".
-                        "<button type=submit>Deny</button>".
+                        "<label for='remarks'>Remarks:</label><br>".
+                        "<textarea name='remarks' rows='4' cols='30' required style='resize: none;' placeholder='Put your remarks here...'></textarea><br>".
+                        "<button type='submit' name='is-approved' value='1'>Approve</button>".
+                        "<button type='submit' name='is-approved' value='0' >Deny</button>".
                     "</form>";
             break;
         default:
             echo "<p>Invalid user role.</p>";
             break;
     }
-
     echo "</div>";
 
 } else {

@@ -7,7 +7,12 @@ if (!isset($_SESSION['user_id']) || !isset($_SESSION['user_role'])) {
     exit();
 }
 
+$role = $_SESSION['user_role'];
+
 $reservationId = $_POST['reservation-id'] ?? null;
+$remarks = $_POST['remarks'] ?? null;
+$isApproved = $_POST['is-approved'] ?? null;
+
 
 if (!$reservationId){
     echo "No reservation ID provided.";
@@ -15,83 +20,48 @@ if (!$reservationId){
 }
 
 
-$isFromStudent = false;
-$isFacultyApproved = null;
-$roleApproved = null; 
+$stmt = $conn->prepare("SELECT 'student' AS source FROM student_reservation WHERE student_reservation_id = ?
+                        UNION
+                        SELECT 'faculty' AS source FROM faculty_reservation WHERE faculty_reservation_id = ?
+                        LIMIT 1");
 
-$stmt = $conn->prepare("SELECT student_number, is_faculty_approved 
-                        FROM student_reservation 
-                        WHERE student_reservation_id = ?");
-$stmt->bind_param("s", $reservationId);
+$stmt->bind_param("ss", $reservationId, $reservationId);
 $stmt->execute();
 $result = $stmt->get_result();
 
+$requestSource = null;
+if ($row = $result->fetch_assoc()) {
+    $requestSource = $row['source']; // 'student' or 'faculty'
+}
 
-if ($result->num_rows > 0){
-    $reservation = $result->fetch_assoc();
-    $isFromStudent = true;
-    $isFacultyApproved = $reservation['is_faculty_approved'];
-} else {
-    $stmt = $conn->prepare("SELECT faculty_reservation_id
-                            FROM faculty_reservation 
-                            WHERE faculty_reservation_id = ?");
-    $stmt->bind_param("s", $reservationId);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows === 0){
-        echo"Reservation not found.";
-        exit();
+try {
+    switch ($requestSource){
+        case 'student':
+            $stmt = $conn-> prepare("UPDATE student_reservation
+                                    SET is_{$role}_approved = ?, {$role}_id = ?, {$role}_remark = ?
+                                    WHERE student_reservation_id = ?");
+            $stmt->bind_param("isss", $isApproved, $_SESSION['user_id'], $remarks, $reservationId);
+            break;
+        case 'faculty':
+            $stmt = $conn-> prepare("UPDATE faculty_reservation
+                                    SET is_{$role}_approved = ?, {$role}_id = ?, {$role}_remark = ?
+                                    WHERE faculty_reservation_id = ?");
+            $stmt->bind_param("isss", $isApproved, $_SESSION['user_id'], $remarks, $reservationId);
+            break;
+        
+        default:
+            echo"Unauthorized source. Bye bye.";
+            exit();
     }
 
-    $isFromStudent = false;
-}
-
-
-switch ($_SESSION['user_role']){
-    case 'faculty':
-        if (!$isFromStudent){
-            exit();
-        }
-
-        $stmt = $conn-> prepare("UPDATE student_reservation
-                                 SET is_faculty_approved = 1, faculty_id = ?
-                                 WHERE student_reservation_id = ?");
-        $stmt->bind_param("ss", $_SESSION['user_id'], $reservationId);
-        $roleApproved = 'student';
-        break;
-
-    case 'admin':
-        if($isFromStudent){ 
-            if ($isFacultyApproved != 1){
-                exit();
-            }
-            
-            $stmt = $conn-> prepare("UPDATE student_reservation
-                                 SET is_admin_approved = 1, admin_id = ?
-                                 WHERE student_reservation_id = ?");
-            $roleApproved = 'student';
-        } else {
-            $stmt = $conn->prepare("UPDATE faculty_reservation 
-                            SET is_admin_approved = 1, admin_id = ?
-                            WHERE faculty_reservation_id = ?");
-            $roleApproved = 'faculty';
-
-        }
-        $stmt->bind_param("ss",$_SESSION['user_id'], $reservationId);
-        break;
-    
-    default:
-        echo"Unauthorized user. Bye bye.";
-        exit();
-}
-
-if ($stmt->execute()) {
-    header("Location: reservation.php?res_id=$reservationId&action=approve_{$roleApproved}");
+    $stmt->execute();
+    header("Location: {$_SESSION['user_role']}_dashboard.php");
     exit();
-
-} else {
-    echo "Failed to approve reservation.";
+}
+catch (Exception $e) {
+    $conn -> rollback();
+    echo "Error: " . $e->getMessage();
+    exit();
 }
 
 $conn->close();
