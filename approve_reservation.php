@@ -55,6 +55,8 @@ try {
     }
 
     $stmt->execute();
+    
+    $conn -> commit();
     header("Location: {$_SESSION['user_role']}_dashboard.php");
     exit();
 }

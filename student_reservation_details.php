@@ -80,7 +80,7 @@ if ($reservationResult->num_rows > 0) {
         case 'more_details':
             if ($isCancellable) {
                 echo "<form action='cancel_reservation.php' method='post'>
-                        <input type='hidden' name='reservation_id' value='$reservationId'>
+                        <input type='hidden' name='reservation-id' value='$reservationId'>
                         <button type='submit'>Cancel</button>
                     </form>";
             }
