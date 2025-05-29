@@ -45,9 +45,9 @@ function formatDateTime($dateTime){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faculty Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="faculty_dashstyle.css">
 </head>
-<body>
+<body> 
     <header>
         <h3>CAS Building Room Reservation System</h3>
         <nav>
@@ -67,40 +67,42 @@ function formatDateTime($dateTime){
                 <p>Division: <?php echo $division; ?></p>
             </div>
         </div>
-        <div class="faculty-container">
-            <div class="faculty-reservations">
-                <h2>Upcoming Reservations</h2>
-                <div class="faculty-header">
-                    <h3>Reservation ID</h3>
-                    <h3>Room Name</h3>
-                    <h3>Schedule Start</h3>
-                    <h3>Date Requested</h3>
-                    <h3>Status</h3>
-                    <h3>Action</h3>
+        <div class="main-content"> 
+            <div class="faculty-container">
+                <div class="faculty-reservations">
+                    <h2>Upcoming Reservations</h2>
+                    <div class="faculty-header">
+                        <h3>Reservation ID</h3>
+                        <h3>Room Name</h3>
+                        <h3>Schedule Start</h3>
+                        <h3>Date Requested</h3>
+                        <h3>Status</h3>
+                        <h3>Action</h3>
+                    </div>
+                    <div class="faculty-scrollable">
+                        <?php
+                            include 'faculty_reservations.php';
+                        ?>
+                    </div>
                 </div>
-                <div class="faculty-scrollable">
-                    <?php
-                        include 'faculty_reservations.php';
-                    ?>
-                </div>
-            </div>
 
-            <div class="faculty-approval-requests">
-                <h2>Approval Requests</h2>
-                <div class="faculty-header">
-                    <h3>Reservation ID</h3>
-                    <h3>Requestee</h3>
-                    <h3>Room Name</h3>
-                    <h3>Schedule Start</h3>
-                    <h3>Date Requested</h3>
-                </div>
-                <div class="faculty-scrollable">
-                    <?php
-                        include 'faculty_approval_request.php';
-                    ?>
+                <div class="faculty-approval-requests">
+                    <h2>Approval Requests</h2>
+                    <div class="faculty-header">
+                        <h3>Reservation ID</h3>
+                        <h3>Requestee</h3>
+                        <h3>Room Name</h3>
+                        <h3>Schedule Start</h3>
+                        <h3>Date Requested</h3>
+                    </div>
+                    <div class="faculty-scrollable">
+                        <?php
+                            include 'faculty_approval_request.php';
+                        ?>
+                    </div>
                 </div>
             </div>
-        </div>
+        </div> 
     </main>
 
     <footer>
