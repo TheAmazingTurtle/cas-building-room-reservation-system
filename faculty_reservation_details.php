@@ -78,6 +78,16 @@ if ($reservationResult->num_rows > 0) {
                         "<button type='submit'>".($reservation['is_archived'] ? 'Restore' : 'Archive')."</button>".
                     "</form>";
             break;
+        case 'admin':
+            echo    "<form action='approve_reservation.php' method='POST'>".
+                        "<input class='hidden' name='reservation-id' value=$reservationId>".
+                        "<button type=submit>Approve</button>".
+                    "</form>".
+                    "<form action='deny_reservation.php' method='POST'>".
+                        "<input class='hidden' name='reservation-id' value=$reservationId>".
+                        "<button type=submit>Deny</button>".
+                    "</form>";
+            break;
         default:
             echo "<p>Invalid user role.</p>";
             break;

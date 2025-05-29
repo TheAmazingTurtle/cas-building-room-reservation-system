@@ -77,10 +77,29 @@ if ($reservationResult->num_rows > 0) {
 
     switch ($_SESSION['user_role']) {
         case 'student':
-            insertStudentExclusiveActions($isCancellable, $reservation['student_reservation_id']);
+            if ($isCancellable) {
+                echo "<form action='cancel_reservation.php' method='post'>
+                        <input type='hidden' name='reservation_id' value='$reservationId'>
+                        <button type='submit'>Cancel</button>
+                    </form>";
+            }
+
+            echo    "<form action='archive_reservation.php' method='post'>".
+                        "<input type='text' style='display:none;' name='reservation-id' value='$reservationId'>".
+                        "<input type='text' style='display:none;' name='action-mode' value='". (!$reservation['is_archived']) ."'>".
+                        "<button type='submit'>".($reservation['is_archived'] ? 'Restore' : 'Archive')."</button>".
+                    "</form>";
             break;
         case 'faculty':
-            insertFacultyExclusiveActions($reservation['student_reservation_id']);
+        case 'admin':
+            echo    "<form action='approve_reservation.php' method='POST'>".
+                        "<input class='hidden' name='reservation-id' value=$reservationId>".
+                        "<button type=submit>Approve</button>".
+                    "</form>".
+                    "<form action='deny_reservation.php' method='POST'>".
+                        "<input class='hidden' name='reservation-id' value=$reservationId>".
+                        "<button type=submit>Deny</button>".
+                    "</form>";
             break;
         default:
             echo "<p>Invalid user role.</p>";
@@ -97,42 +116,11 @@ if ($reservationResult->num_rows > 0) {
 $conn->close();
 
 function insertStudentExclusiveActions($isCancellable, $reservationId){
-    if ($isCancellable) {
-        echo "<form action='cancel_reservation.php' method='post'>
-                <input type='hidden' name='reservation_id' value='" . htmlspecialchars($reservation['student_reservation_id']) . "'>
-                <button type='submit'>Cancel</button>
-            </form>";
-    }
-
-    switch ($_SESSION['current_page']){
-        case 'dashboard':
-            echo    "<form action='archive_reservation.php' method='post'>".
-                        "<input type='text' style='display:none;' name='reservation-id' value='".$reservation["student_reservation_id"]."'>".
-                        "<input type='text' style='display:none;' name='action-mode' value='1'>".
-                        "<button type='submit'>Archive</button>".
-                    "</form>";
-            break;
-        case 'archive':
-            echo    "<form action='archive_reservation.php' method='post'>".
-                        "<input type='text' style='display:none;' name='reservation-id' value='".$reservation["student_reservation_id"]."'>".
-                        "<input type='text' style='display:none;' name='action-mode' value='0'>".
-                        "<button type='submit'>Restore</button>".
-                    "</form>";
-            break;
-        default:
-            break;
-    }
+    
 }
 
 function insertFacultyExclusiveActions($reservationId){
-    echo    "<form action='approve_reservation.php' method='POST'>".
-                "<input class='hidden' name='reservation-id' value=$reservationId>".
-                "<button type=submit>Approve</button>".
-            "</form>".
-            "<form action='deny_reservation.php' method='POST'>".
-                "<input class='hidden' name='reservation-id' value=$reservationId>".
-                "<button type=submit>Deny</button>".
-            "</form>";
+    
 }
 
 ?>

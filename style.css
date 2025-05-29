@@ -367,8 +367,73 @@ main {
                 }
 
             
+    /* Admin */
+          
+    .admin-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
 
-                
+        width: 1200px;
+    }
+
+        #admin-approval-requests {
+            display: flex;
+            flex-direction: column;
+
+            width: 100%;
+        }
+
+            #admin-request-container {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                width: 100%;
+            }
+
+                #admin-faculty-request, #admin-student-request {
+                    display: flex;
+                    flex-direction: column;
+
+                    width: 48%;
+                }
+
+                    .admin-header {
+                        display: flex;
+                        flex-direction: row;
+
+                        box-sizing: border-box;
+
+                        padding-right: 15px;
+                        margin: 0 10px;
+                    }
+
+                        #admin-faculty-request h4, #admin-student-request h4 {
+                            width: calc(100%/5);
+                            font-size: 12px;
+
+                            text-align: center;
+                        }
+
+                    .admin-scrollable {
+                        display: flex;
+                        flex-direction: column;
+
+                        height: 300px;
+                        overflow-y: scroll;
+                    }
+
+                        #admin-faculty-request p {
+                            width: calc(100% / 5);
+                            text-align: center;
+                        }
+
+                        #admin-student-request p {
+                            width: calc(100% / 6);
+                            text-align: center;
+                        }
+                        
 
 footer {
     width: 100%;

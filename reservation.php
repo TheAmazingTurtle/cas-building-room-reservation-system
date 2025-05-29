@@ -33,8 +33,10 @@ $action = $_GET['action'] ?? null;
                     case 'faculty':
                         include ($action == 'approve' ? 'student_reservation_details.php' : 'faculty_reservation_details.php');
                         break;
-                    default:
-                        $_SESSION['current_page'] = 'dashboard';
+                    case 'admin':
+                        include ($action == 'approve_student' ? 'student_reservation_details.php' : 'faculty_reservation_details.php');
+                        break;
+                    default:    
                         break;
                 }
             ?>
