@@ -21,6 +21,7 @@ try {
             $studentName = $_POST['student-name'] ?? '';
             $roomName = $_POST['room-name'] ?? '';
             $facultyName = $_POST['faculty-name'] ?? '';
+            $headCount = $_POST['head-count'] ?? '';
             $reservationStart = $_POST['reservation-start'] ?? '';
             $reservationEnd = $_POST['reservation-end'] ?? '';
             $purpose = $_POST['purpose'] ?? '';
@@ -36,8 +37,8 @@ try {
             $stmt->bind_result($facultyId);
             $stmt->fetch();
 
-            $stmt = $conn->prepare("INSERT INTO student_reservation (student_reservation_id, student_number, room_name, purpose, request_date, time_start, time_end, is_active, is_archived, faculty_id, is_faculty_approved, faculty_remark, admin_id, is_admin_approved, admin_remark) VALUES (?, ?, ?, ?, CURDATE(), ?, ?, 1, 0, ?, null, null, null, null, null)");
-            $stmt->bind_param("sssssss", $reservationId, $studentNumber, $roomName, $purpose, $reservationStart, $reservationEnd, $facultyId);
+            $stmt = $conn->prepare("INSERT INTO student_reservation (student_reservation_id, student_number, room_name, head_count, purpose, request_date, time_start, time_end, is_active, is_archived, faculty_id, is_faculty_approved, faculty_remark, admin_id, is_admin_approved, admin_remark) VALUES (?, ?, ?, ?, ?, CURDATE(), ?, ?, 1, 0, ?, null, null, null, null, null)");
+            $stmt->bind_param("sssissss", $reservationId, $studentNumber, $roomName, $headCount, $purpose, $reservationStart, $reservationEnd, $facultyId);
             $stmt->execute();
 
             break;
@@ -45,14 +46,15 @@ try {
             $facultyId = $_POST['faculty-id'] ?? '';
             $facultyName = $_POST['faculty-name'] ?? '';
             $roomName = $_POST['room-name'] ?? '';
+            $headCount = $_POST['head-count'] ?? '';
             $reservationStart = $_POST['reservation-start'] ?? '';
             $reservationEnd = $_POST['reservation-end'] ?? '';
             $purpose = $_POST['purpose'] ?? '';
 
             $reservationId = generateUniqueReservationId("F");
 
-            $stmt = $conn->prepare("INSERT INTO faculty_reservation (faculty_reservation_id, faculty_id, room_name, purpose, request_date, is_active, is_archived, time_start, time_end, admin_id, is_admin_approved, admin_remark) VALUES (?, ?, ?, ?, CURDATE(), 1, 0, ?, ?, null, null, null)");
-            $stmt->bind_param("ssssss", $reservationId, $facultyId, $roomName, $purpose, $reservationStart, $reservationEnd);
+            $stmt = $conn->prepare("INSERT INTO faculty_reservation (faculty_reservation_id, faculty_id, room_name, head_count, purpose, request_date, is_active, is_archived, time_start, time_end, admin_id, is_admin_approved, admin_remark) VALUES (?, ?, ?, ?, ?, CURDATE(), 1, 0, ?, ?, null, null, null)");
+            $stmt->bind_param("sssisss", $reservationId, $facultyId, $roomName, $headCount, $purpose, $reservationStart, $reservationEnd);
             $stmt->execute();
 
             break;

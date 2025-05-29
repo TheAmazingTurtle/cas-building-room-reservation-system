@@ -10,6 +10,7 @@ require 'db_connector.php';
 $userId = $_SESSION['user_id'];
 $userName = $_SESSION['name'] ?? '';
 $roomName = $_SESSION['room_name'] ?? '';
+$roomCapacity = $_SESSION['room_capacity'];
 
 ?>
 
@@ -46,6 +47,12 @@ $roomName = $_SESSION['room_name'] ?? '';
                     <div>
                         <label for="room-name">Room Name:</label>
                         <input type="text" id="room-name" name="room-name" value='<?php echo $roomName; ?>' readonly>
+                    </div>
+
+                    <div>
+                        <label for="head-count">Head Count:</label>
+                        <p id="room-max-capacity" style="display:none;"><?php echo $roomCapacity; ?></p>
+                        <input type="number" id="head-count" name="head-count" required>
                     </div>
 
                     <div>
