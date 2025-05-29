@@ -82,7 +82,7 @@ switch ($_SESSION['user_role']){
 }
 
 if ($stmt->execute()) {
-    echo"Reservation {$reservationId} approved.";
+    header("Location: reservation.php?reservation_id=$reservationId");
 } else {
     echo "Failed to approve reservation.";
 }

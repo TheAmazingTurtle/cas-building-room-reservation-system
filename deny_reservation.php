@@ -54,7 +54,7 @@ switch ($_SESSION['user_role']){
         }
 
         $stmt = $conn-> prepare("UPDATE student_reservation
-                                 SET is_faculty_approved = 0, faculty_id = ?
+                                 SET is_faculty_approved = 0, faculty_id = ? 
                                  WHERE student_reservation_id = ?");
         $stmt->bind_param("ss", $_SESSION['user_id'], $reservationId);
         break;
@@ -79,7 +79,7 @@ switch ($_SESSION['user_role']){
 }
 
 if ($stmt->execute()) {
-    echo"Reservation {$reservationId} denied.";
+    header("Location: reservation.php?reservation_id=$reservationId");
 } else {
     echo "Failed to deny reservation.";
 }
