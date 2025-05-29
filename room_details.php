@@ -48,43 +48,46 @@ $_SESSION['room_name'] = $roomName;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Room Details</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="detailsStyle.css">
 </head>
 <body id="room-details">
     <header>
         <h3>CAS Building Room Reservation System</h3>
+        <a href="javascript:history.back()">Back</a>
     </header>
     <main>
-        <a href="javascript:history.back()">Back</a>
-        <table class="room-information-container">
-            <tr>
-                <th colspan=2>Room Information</th>
-            </tr>
-            <tr>
-                <td><strong>Room Name:</strong><?php echo $roomName ?></td>
-                <td><strong>Room Type:</strong><?php echo $roomFloor ?></td>
-            </tr>
-            <tr>
-                <td><strong>Floor Number:</strong><?php echo $roomFloor ?></td>
-                <td><strong>Capacity:</strong><?php echo $roomCapacity ?></td>
-            </tr>
-            <tr>
-                <td colspan=2><a href='<?php echo $requestFormLink; ?>'><button>Request Room</button></a></td>
-            </tr>
-        </table>
+        <div class="room-details-container">
+            <table class="room-information-container">
+                <tr>
+                    <th colspan=2>Room Information</th>
+                </tr>
+                <tr>
+                    <td><strong>Room Name:</strong><?php echo $roomName ?></td>
+                    <td><strong>Room Type:</strong><?php echo $roomFloor ?></td>
+                </tr>
+                <tr>
+                    <td><strong>Floor Number:</strong><?php echo $roomFloor ?></td>
+                    <td><strong>Capacity:</strong><?php echo $roomCapacity ?></td>
+                </tr>
+            </table>
 
-        <table class="room-asset-container">
-            <tr>
-                <th colspan=2>Assets</th>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <th>Quantity</th>
-            </tr>
-            <?php
-                include 'room_assets.php';
-            ?>
-        </table>
+            <table class="room-asset-container">
+                <tr>
+                    <th colspan=2>Assets</th>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Quantity</th>
+                </tr>
+                <?php
+                    include 'room_assets.php';
+                ?>
+            </table>
+        </div>
+
+        <tr>
+            <td colspan=2><a href='<?php echo $requestFormLink; ?>'><button>Request Room</button></a></td>
+        </tr>
 
         <table class="class-schedule-container">
             <tr>

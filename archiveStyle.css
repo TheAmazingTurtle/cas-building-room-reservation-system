@@ -24,7 +24,7 @@ header h3 {
   color: #333;
 }
 
-a {
+nav a {
   margin-left: 15px;
   text-decoration: none;
   color: #555;
@@ -39,62 +39,58 @@ nav a:hover {
   background-color: #e9c5c5;
 }
 
-.room-details-container {
+/* User Info Section */
+.user-info {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 30px;
-  margin: 20px;
+  background-color: #f3d6d6;
+  padding: 20px;
+  /*margin: 20px;*/
+  gap: 20px;
+}
+p{
+    font-size: 20px;
+}
+span{
+    font-weight: bold;
 }
 
-.room-information-container{
+/* Reservation Section */
+.student-reservations {
+  background-color: #fff;
+  margin: 20px;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.student-reservations h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #222;
+  text-align: center;
+}
+
+/* Table Styles */
+table {
   width: 100%;
-  background-color: #fff;
-  margin: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-
-}
-
-.room-asset-container {
-  width:100%;
-  background-color: #fff;
-  margin: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-
-.room-information-container table{
-
-
-}
-
-.room-asset-container th {
-  padding: 12px;
-  text-align: center;
-  font-size: 16px;
-  color: #444;
-
-}
-
-.class-schedule-container{
-  width: 1000px;
-  text-align: center;
   border-collapse: collapse;
-  height: 750px;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-/* Other table styles (KEEP) */
 thead {
   background-color: #d4b3b3;
 }
 
-/*thead th {
+thead th {
   padding: 12px;
   text-align: center;
   font-size: 16px;
   color: #444;
-}*/
+}
 
 tbody td {
   padding: 14px;
@@ -126,6 +122,7 @@ td button, td a {
   background-color: #e0e0e0;
   text-decoration: none;
   transition: background-color 0.3s;
+  left:20%;
 }
 
 td button:hover, td a:hover {
@@ -138,4 +135,3 @@ footer {
   padding: 15px;
   color: #777;
 }
-
