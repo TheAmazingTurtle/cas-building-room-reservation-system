@@ -64,8 +64,9 @@ switch ($_SESSION['user_role']){
     case 'admin':
         if($isFromStudent){ 
             if ($isFacultyApproved != 1){
-            exit();
+                exit();
             }
+            
             $stmt = $conn-> prepare("UPDATE student_reservation
                                  SET is_admin_approved = 1, admin_id = ?
                                  WHERE student_reservation_id = ?");

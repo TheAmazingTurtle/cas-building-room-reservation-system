@@ -19,11 +19,6 @@ switch($_SESSION['current_page']){
         break;
 }
 
-if ($_SESSION['user_role'] != 'student' && $_SESSION['user_role'] != 'faculty'){
-    echo 'Unrecognized role';
-    exit();
-}
-
 require 'db_connector.php';
 
 $redirectPage = $_SESSION['user_role'].$redirectPage;
@@ -31,17 +26,20 @@ $redirectPage = $_SESSION['user_role'].$redirectPage;
 $resId = $_POST['reservation-id'];
 $archiveMode = $_POST['action-mode'];
 
-    
 
 try {
     $conn->begin_transaction();
+
+    
 
     $updateReservationSql = null;
     switch($_SESSION['user_role']){
         case 'student':
             $updateReservationSql = "UPDATE student_reservation SET is_archived = ? WHERE student_reservation_id = ? ;";
+            break;
         case 'faculty':
             $updateReservationSql = "UPDATE faculty_reservation SET is_archived = ? WHERE faculty_reservation_id = ? ;";
+            break;
     }
 
     $stmt = $conn->prepare($updateReservationSql);

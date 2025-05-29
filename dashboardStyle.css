@@ -143,3 +143,7 @@ footer {
   padding: 15px;
   color: #777;
 }
+
+.hidden {
+    display: none !important; 
+}

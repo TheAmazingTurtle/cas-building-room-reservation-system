@@ -144,3 +144,7 @@ button, .action-btn {
 button:hover, .action-btn:hover {
     background-color: #bbb;
 }
+
+.hidden {
+    display: none !important; 
+}

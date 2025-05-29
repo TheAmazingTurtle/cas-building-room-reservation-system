@@ -17,7 +17,7 @@ if ($approvalRequestData -> num_rows > 0){
         $timeStart =  formatDateTime($approvalRequest['time_start']);
         $requestTime =  formatDate($approvalRequest['request_date']);
 
-        echo    "<div class='scroll-item' onclick=\"window.location.href='reservation.php?res_id={$approvalRequest['student_reservation_id']}&action=approve'\">".
+        echo    "<div class='scroll-item' onclick=\"window.location.href='reservation.php?res_id={$approvalRequest['student_reservation_id']}&action=approve&type=student'\">".
                     "<p>{$approvalRequest['student_reservation_id']}</p>".
                     "<p>{$approvalRequest['student_name']}</p>".
                     "<p>{$approvalRequest['room_name']}</p>".

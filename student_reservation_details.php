@@ -75,8 +75,8 @@ if ($reservationResult->num_rows > 0) {
 
     echo "<div class='button-container'>";
 
-    switch ($_SESSION['user_role']) {
-        case 'student':
+    switch ($action) {
+        case 'more_details':
             if ($isCancellable) {
                 echo "<form action='cancel_reservation.php' method='post'>
                         <input type='hidden' name='reservation_id' value='$reservationId'>
@@ -90,8 +90,7 @@ if ($reservationResult->num_rows > 0) {
                         "<button type='submit'>".($reservation['is_archived'] ? 'Restore' : 'Archive')."</button>".
                     "</form>";
             break;
-        case 'faculty':
-        case 'admin':
+        case 'approve':
             echo    "<form action='approve_reservation.php' method='POST'>".
                         "<input class='hidden' name='reservation-id' value=$reservationId>".
                         "<button type=submit>Approve</button>".

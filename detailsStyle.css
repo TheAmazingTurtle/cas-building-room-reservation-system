@@ -139,3 +139,6 @@ footer {
   color: #777;
 }
 
+.hidden {
+    display: none !important; 
+}
