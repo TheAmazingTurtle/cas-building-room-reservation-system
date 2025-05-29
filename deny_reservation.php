@@ -17,6 +17,7 @@ if (!$reservationId){
 
 $isFromStudent = false;
 $isFacultyApproved = null;
+$roleApproved = null; 
 
 $stmt = $conn->prepare("SELECT student_number, is_faculty_approved 
                         FROM student_reservation 
@@ -57,6 +58,7 @@ switch ($_SESSION['user_role']){
                                  SET is_faculty_approved = 0, faculty_id = ? 
                                  WHERE student_reservation_id = ?");
         $stmt->bind_param("ss", $_SESSION['user_id'], $reservationId);
+        $roleApproved = 'student'; 
         break;
 
     case 'admin':
@@ -64,10 +66,12 @@ switch ($_SESSION['user_role']){
             $stmt = $conn-> prepare("UPDATE student_reservation
                                  SET is_admin_approved = 0, admin_id = ?
                                  WHERE student_reservation_id = ?");
+            $roleApproved = 'student'; 
         } else {
             $stmt = $conn->prepare("UPDATE faculty_reservation 
                             SET is_admin_approved = 0, admin_id = ?
                             WHERE faculty_reservation_id = ?");
+            $roleApproved = 'faculty'; 
 
         }
         $stmt->bind_param("ss",$_SESSION['user_id'], $reservationId);
@@ -79,7 +83,7 @@ switch ($_SESSION['user_role']){
 }
 
 if ($stmt->execute()) {
-    header("Location: reservation.php?reservation_id=$reservationId");
+    header("Location: reservation.php?res_id=$reservationId&action=approve_{$roleApproved}");
 } else {
     echo "Failed to deny reservation.";
 }
