@@ -1,0 +1,118 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+header {
+  background-color: #f4d7d7;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h3 {
+  font-size: 30px;
+  color: #333;
+}
+
+nav a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: #555;
+  font-size: 18px;
+  background-color: #f6eaea;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #e9c5c5;
+}
+
+/* User Info Section */
+.user-info {
+  display: flex;
+  align-items: center;
+  background-color: #f3d6d6;
+  padding: 20px;
+  /*margin: 20px;*/
+  gap: 20px;
+}
+p{
+    font-size: 20px;
+}
+span{
+    font-weight: bold;
+}
+
+.faculty-container {
+  background-color: #fff;
+  margin: 20px;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Archive */
+.faculty-header{
+    background-color: #d4b3b3;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+    border-radius: 12px;
+}
+
+.faculty-header h3 {
+    padding: 12px;
+    font-size: 16px;
+    color: #444;
+}
+
+.faculty-archive h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #222;
+  text-align: center;
+}
+
+.faculty-scrollable {
+  padding: 14px;
+  background-color: #fafafa;
+  border-bottom: 1px solid #eee;
+  font-size: 15px;
+  vertical-align: middle;
+}
+
+footer {
+  text-align: center;
+  font-size: 10px !important;
+  padding: 15px;
+  color: #777;
+}
+
+/* Buttons inside table */
+button, .action-btn {
+    background-color: #ddd;
+    color: #333;
+    border: none;
+    padding: 6px 12px;
+    margin: 0 2px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover, .action-btn:hover {
+    background-color: #bbb;
+}
