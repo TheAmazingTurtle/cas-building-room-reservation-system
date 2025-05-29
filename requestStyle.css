@@ -51,65 +51,67 @@ form {
     justify-content: center;
 }
 
-.request-search-bar {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 20px;
-    font-size: 16px;
-    outline: none;
-    width: 350px;
-    transition: box-shadow 0.3s ease;
-    border: solid 1px #d76060;
-}
-
-.request-search-bar:focus {
-  box-shadow: 0 0 0 2px #ec0e0e50;
-}
-
-#search-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 20px;
-  background-color: #007bff;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin: 15px;
-}
-
-#search-button:hover {
-  background-color: #0056b3;
-}
-
 .request-search-body {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px; 
-    padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+ 
+.request-search-bar {
+  width: 250px;
+  padding: 0.5rem 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px 0 0 8px;
+  font-size: 1rem;
 }
 
-.request-search-body > div:first-child {
-    flex: 1; 
+form button {
+  padding: 0.5rem 1rem;
+  border: 2px solid #ddd;
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+  background-color: #f7dada;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background-color: #fbb;
 }
 
 .request-filter-container {
-    width: 300px; 
-    border-left: 1px solid #ccc;
-    padding-left: 20px;
+  background-color: #fff4f4;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 250px;
 }
 
 .request-room-option-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 500px;
+    width: 1000px;
     height: 600px;
-    overflow-y: scroll;
     gap: 10px;
 }
+
+.header-category {
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-size: 0.5rem;
+    font-weight: bold; 
+    margin-top: 20px;
+    
+}
+
+.header-category h1 {
+    text-align: center;
+}
+
+
 .request-room-option-container > div {
     width: 100%;
     display: flex;
@@ -117,39 +119,39 @@ form {
     align-items: center;
 }
 
-.request-room-option-container > div > form {
-    width: 100%;
-
-    padding: 10px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-
-    text-align: center;
-    cursor: pointer;
+.room-option {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.request-room-option-container > div > form:hover {
-    background-color: blueviolet;
+.room-option:hover {
+  background-color: rgba(173, 216, 230, 0.3); /* light blue tint */
+  border-radius: 8px; /* optional */
 }
+
 
 .room-name {
     width: 30%;
 }
 
 .room-type {
-    width: 50%;
+    width: 40%;
 }
 
 .room-floor {
-    width: 10%;
+    width: 20%;
 }
 
 .room-capacity {
     width: 10%;
 }
+
 
 .room-not-found {
     width: 100%;
@@ -244,107 +246,11 @@ form {
     width: 100%;
 }
 
-
-/*.user-info {
-  display: flex;
-  align-items: center;
-  background-color: #f3d6d6;
-  padding: 20px;
-  /*margin: 20px;
-  gap: 20px;
-}
-p{
-    font-size: 20px;
-}
-span{
-    font-weight: bold;
-}
-
-.profile-pic {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: #ccc;
-  object-fit: cover;
-}
-
-/* Reservation Section 
-.student-reservations {
-  background-color: #fff;
-  margin: 20px;
-  padding: 25px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  display: flex;
-  flex-direction: column;
-}
-
-.student-reservations h2 {
-  font-size: 22px;
-  margin-bottom: 20px;
-  color: #222;
-  text-align: center;
-}
-
-/* Table Styles 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-thead {
-  background-color: #d4b3b3;
-}
-
-thead th {
-  padding: 12px;
-  text-align: center;
-  font-size: 16px;
-  color: #444;
-}
-
-tbody td {
-  padding: 14px;
-  background-color: #fafafa;
-  border-bottom: 1px solid #eee;
-  font-size: 15px;
-  vertical-align: middle;
-  text-align: center;
-}
-
-tbody tr:nth-child(even) td {
-  background-color: #f3f3f3;
-}
-
-td:last-child {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
-}
-
-td button, td a {
-  padding: 6px 10px;
-  font-size: 13px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  color: #333;
-  background-color: #e0e0e0;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  left:20%;
-}
-
-td button:hover, td a:hover {
-  background-color: #ccc;
-}
-
 footer {
   text-align: center;
-  font-size: 10px !important;
+  font-size: 20px !important;
   padding: 15px;
   color: #777;
-}*/
+}
+
+

@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+header {
+  background-color: #f4d7d7;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h3 {
+  font-size: 30px;
+  color: #333;
+}
+
+a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: #555;
+  font-size: 18px;
+  background-color: #f6eaea;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #e9c5c5;
+}
+
+.room-details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin: 20px;
+}
+
+.room-information-container{
+  width: 100%;
+  background-color: #fff;
+  margin: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+
+}
+
+.room-asset-container {
+  width:100%;
+  background-color: #fff;
+  margin: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.room-information-container table{
+
+
+}
+
+.room-asset-container th {
+  padding: 12px;
+  text-align: center;
+  font-size: 16px;
+  color: #444;
+
+}
+
+.class-schedule-container{
+  width: 1000px;
+  text-align: center;
+  border-collapse: collapse;
+  height: 750px;
+}
+
+/* Other table styles (KEEP) */
+thead {
+  background-color: #d4b3b3;
+}
+
+/*thead th {
+  padding: 12px;
+  text-align: center;
+  font-size: 16px;
+  color: #444;
+}*/
+
+tbody td {
+  padding: 14px;
+  background-color: #fafafa;
+  border-bottom: 1px solid #eee;
+  font-size: 15px;
+  vertical-align: middle;
+  text-align: right;
+}
+
+tbody tr:nth-child(even) td {
+  background-color: #f3f3f3;
+}
+
+td:last-child {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+td button, td a {
+  padding: 6px 10px;
+  font-size: 13px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #333;
+  background-color: #e0e0e0;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+td button:hover, td a:hover {
+  background-color: #ccc;
+}
+
+footer {
+  text-align: center;
+  font-size: 10px !important;
+  padding: 15px;
+  color: #777;
+}
+
