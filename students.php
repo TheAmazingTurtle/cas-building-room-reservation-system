@@ -24,7 +24,7 @@ if ($studentResult -> num_rows > 0){
 }
 else {
     echo    "<div>".
-                "<p class='no-student'>No Students Registered in Database/p>".
+                "<p class='no-student'>No Students Registered in Database</p>".
             "</div>";
 }
 

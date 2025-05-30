@@ -7,8 +7,7 @@ const facultyNames = [];
 const isFacultyAvailable = [];
 
 let roomSchedule = [];
-let approvedReservationSchedule = [];
-let pendingReservationSchedule = [];
+let filedReservationSchedule = [];
 let hasConflict = true;
 
 let roomMaxCapacity = null;
@@ -96,11 +95,9 @@ function getReservationSchedule() {
             reservation.start = new Date(reservation.start);
             reservation.end = new Date(reservation.end);
 
-            if (reservation.isFacultyApproved === 1 && reservation.isAdminApproved === 1) {
-                approvedReservationSchedule.push(reservation);
-            } else {
-                pendingReservationSchedule.push(reservation);
-            }
+            filedReservationSchedule.push(reservation);
+
+            
         });
     });
 }
@@ -191,7 +188,7 @@ function checkScheduleConflict() {
         const dayScheduleEnd = new Date(dateStart + " " + daySchedule.time_end);
 
         if (dayScheduleStart < schedule.end && dayScheduleEnd > schedule.start) {
-            insertConfictDetails(conflictContainer, daySchedule, dateStart);
+            insertClassConfictDetails(conflictContainer, daySchedule, dateStart);
             hasConflict = true;
         }
 
@@ -203,26 +200,18 @@ function checkScheduleConflict() {
             const dayScheduleEnd = new Date(dateEnd + " " + daySchedule.time_end);
 
             if (dayScheduleStart < schedule.end && dayScheduleEnd > schedule.start) {
-                insertConfictDetails(conflictContainer, daySchedule, dateEnd);  
+                insertClassConfictDetails(conflictContainer, daySchedule, dateEnd);  
                 hasConflict = true;
             }
         });
     }
 
-    // approvedReservationSchedule.forEach(resSchedule => {
-    //     if (resSchedule.start < schedule.end && resSchedule.end > schedule.start) {
-    //         const roomDetailsLink = `reservation_details.php?res_id=${resSchedule.resId}&role=${resSchedule.role}`;
-    //         outputPrompt.innerHTML += `<br>- Conflict with approved reservation by ${resSchedule.requestee}: <a href="${roomDetailsLink}">View Details</a>`;
-    //         hasConflict = true;
-    //     }
-    // });
-
-    // pendingReservationSchedule.forEach(resSchedule => {
-    //     if (resSchedule.start < schedule.end && resSchedule.end > schedule.start) {
-    //         const roomDetailsLink = `reservation_details.php?res_id=${resSchedule.resId}&role=${resSchedule.role}`;
-    //         outputPrompt.innerHTML += `<br>- Warning Conflict with pending reservation by ${resSchedule.requestee}: <a href="${roomDetailsLink}">View Details</a>`;
-    //     }
-    // });
+    filedReservationSchedule.forEach(resSchedule => {
+        if (resSchedule.start < schedule.end && resSchedule.end > schedule.start) {
+            insertReservationConfictDetails(conflictContainer, resSchedule);  
+            hasConflict = true;
+        }
+    });
 
     if (!hasConflict) {
         outputPrompt.innerHTML = "No Conflict Found";
@@ -292,7 +281,7 @@ function verifyFacultySubmission(event) {
     document.getElementById("faculty-request-form").submit();
 }
 
-function insertConfictDetails(conflictContainer, daySchedule, date) {
+function insertClassConfictDetails(conflictContainer, daySchedule, date) {
     const sheduleDetailContainer = document.createElement("details");
     const containerTitle = document.createElement("summary");
 
@@ -315,6 +304,50 @@ function insertConfictDetails(conflictContainer, daySchedule, date) {
     sheduleDetailContainer.appendChild(subject);
     sheduleDetailContainer.appendChild(timeStart);
     sheduleDetailContainer.appendChild(timeEnd);
+
+    conflictContainer.appendChild(sheduleDetailContainer);
+}
+
+function insertReservationConfictDetails(conflictContainer, reservationData) {
+    const options = { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric', 
+        hour: '2-digit', 
+        minute: '2-digit',
+        hour12: false // use true for AM/PM format
+    };
+
+    const sheduleDetailContainer = document.createElement("details");
+    const containerTitle = document.createElement("summary");
+
+    const requestID = document.createElement("p");
+    requestID.innerText = `Reservation ID: ${reservationData.resId}`;
+
+    const requestee = document.createElement("p");
+    requestee.innerText = `Requestee: ${reservationData.requestee}`;
+
+    const scheduleStart = document.createElement("p");
+    scheduleStart.innerText = `Schedule Start: ${reservationData.start.toLocaleString('en-US', options).replace(',', ' at')}`;
+
+    const scheduleEnd = document.createElement("p");
+    scheduleEnd.innerText = `Schedule End: ${reservationData.end.toLocaleString('en-US', options).replace(',', ' at')}`;
+
+    const dateRequested = document.createElement("p");
+    dateRequested.innerText = `Date Requested: ${reservationData.requestDate}`;
+
+    const status = document.createElement("p");
+    status.innerText = `Status: ${reservationData.status}`;
+
+    containerTitle.innerText = `Conflict with Reservation ID ${reservationData.resId}`;
+    
+    sheduleDetailContainer.appendChild(containerTitle);
+    sheduleDetailContainer.appendChild(requestID);
+    sheduleDetailContainer.appendChild(requestee);
+    sheduleDetailContainer.appendChild(scheduleStart);
+    sheduleDetailContainer.appendChild(scheduleEnd);
+    sheduleDetailContainer.appendChild(dateRequested);
+    sheduleDetailContainer.appendChild(status);
 
     conflictContainer.appendChild(sheduleDetailContainer);
 }
