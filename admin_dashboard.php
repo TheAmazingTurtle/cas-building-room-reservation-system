@@ -51,7 +51,6 @@ function formatDateTime($dateTime){
     <header>
         <h1>CAS Building Room Reservation System</h1>
         <nav>
-            <a href="admin_dashboard.php">Dashboard</a>
             <a href="admin_manage.php">Manage</a>
             <a href="adminHistory.php">Check History</a> 
             <a href="logout.php">Logout</a>

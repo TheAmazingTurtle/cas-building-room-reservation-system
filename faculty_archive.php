@@ -34,7 +34,6 @@ function formatDateTime($dateTime){
         <nav>
             <a href="faculty_dashboard.php">Dashboard</a>
             <a href="faculty_request.php">Request</a>
-            <a href="faculty_archive.php">Archive</a>
             <a href="logout.php">Logout</a>
         </nav>
     </header>
