@@ -53,7 +53,7 @@ function formatDateTime($dateTime){
         <nav>
             <a href="admin_dashboard.php">Dashboard</a>
             <a href="admin_manage.php">Manage</a>
-            <a href="admin_archive.php">Archive</a> 
+            <a href="adminHistory.php">Check History</a> 
             <a href="logout.php">Logout</a>
         </nav>
     </header>

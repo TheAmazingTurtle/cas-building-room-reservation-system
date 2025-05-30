@@ -26,6 +26,7 @@ $_SESSION['current_page'] = "request";
             <a href="student_request.php">Request</a>
             <a href="student_archive.php">Archive</a>
             <a href="logout.php">Logout</a>
+            <a href="edit-details.php">Edit Details</a>
         </nav>
     </header>
 
