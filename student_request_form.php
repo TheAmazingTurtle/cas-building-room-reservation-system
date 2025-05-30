@@ -29,49 +29,48 @@ $roomCapacity = $_SESSION['room_capacity'];
     <main>
         <a href="javascript:history.back()">Back</a>
         <div>
-            <h2>Room Request</h2>
+            <h2>Room Request Form</h2>
             <div class="room-request-form-container">
                 <form id='student-request-form' action="process_request.php" method="POST">
-                    <h3>Form</h3>
 
-                    <div>
+                    <div class="form-fields">
                         <label for="student-number">Student Number:</label>
                         <input type="text" id="student-number" name="student-number" value='<?php echo $userId; ?>' readonly>
                     </div>
 
-                    <div>
+                    <div class="form-fields">
                         <label for="student-name">Student Name:</label>
                         <input type="text" id="student-name" name="student-name" value='<?php echo $userName; ?>' readonly>
                     </div>
                     
-                    <div>
+                    <div class="form-fields">
                         <label for="room-name">Room Name:</label>
                         <input type="text" id="room-name" name="room-name" value='<?php echo $roomName; ?>' readonly>
                     </div>
 
-                    <div>
+                    <div class="form-fields">
                         <label for="faculty-input">Faculty-in-Charge:</label>
                         <input type="text" id="faculty-input" name="faculty-name" required>
                         <div><div id="suggestions" class="suggestions-box"></div></div>
                     </div>
 
-                    <div>
+                    <div class="form-fields">
                         <label for="head-count">Head Count:</label>
                         <p id="room-max-capacity" style="display:none;"><?php echo $roomCapacity; ?></p>
                         <input type="number" id="head-count" name="head-count" required>
                     </div>
 
-                    <div>
+                    <div class="form-fields">
                         <label for="reservation-start">Date & Time Start:</label>
                         <input type="datetime-local" id="reservation-start" name="reservation-start" required>
                     </div>
 
-                    <div>
+                    <div class="form-fields">
                         <label for="reservation-end">Date & Time End:</label>
                         <input type="datetime-local" id="reservation-end" name="reservation-end" required>
                     </div>
 
-                    <div>
+                    <div class="form-fields">
                         <label for="purpose">Purpose:</label>
                         <textarea id="purpose" name="purpose" rows="4" cols="40" placeholder="Enter your purpose here..." required></textarea>
                     </div>
@@ -83,7 +82,7 @@ $roomCapacity = $_SESSION['room_capacity'];
                     <button type="reset">Reset</button>
                     <button type="submit">Submit</button>
                 </form>
-                <div>
+                <div class="conflicts">
                     <h3>Conflicts</h3>
                     <div id="conflict-container"><div>
                 </div>

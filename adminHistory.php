@@ -5,14 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin History</title>
-    <link rel="stylesheet" href="archiveStyle.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <h1>CAS Building Room Reservation System</h1>
         <nav>
-             <a href="admin_dashboard.php">Dashboard</a>
-            <a href="admin_manage.php">Manage</a> 
+             <a href="home.php">Dashboard</a>
+            <a href="profile.php">Request</a>
+            <a href="approve.php">Approval</a>
+            <a href="manage.php">Manage</a> 
+            <a href="courses.php">Archive</a>
             <a href="logout.php">Logout</a>
         </nav>
     </header>

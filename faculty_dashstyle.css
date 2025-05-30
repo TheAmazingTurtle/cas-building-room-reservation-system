@@ -114,25 +114,14 @@ span{
     font-size: 16px;
 }
 
-.faculty-approval-requests p , .faculty-reservations p{
-  width: calc(100%/6);
-  text-align: center;
-}
-
 .faculty-scrollable {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* same number of <p> elements */
     gap: 10px;
-    height: 300px;
-    overflow-y: scroll;
-}
-
-.scroll-item{
-  display: flex;
-  flex-direction: row;
-  box-sizing: border-box;
-  margin: 0 10px;
-  align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    align-items: center;
+    text-align: center;
 }
 
 footer {
@@ -156,4 +145,8 @@ button, .action-btn {
 
 button:hover, .action-btn:hover {
     background-color: #bbb;
+}
+
+.hidden {
+    display: none !important; 
 }

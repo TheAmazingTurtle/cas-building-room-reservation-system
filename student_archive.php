@@ -26,6 +26,7 @@ $user_id = $_SESSION['user_id'];
         <nav>
             <a href="student_dashboard.php">Dashboard</a>
             <a href="student_request.php">Request</a>
+            <a href="student_archive.php">Archive</a>
             <a href="logout.php">Logout</a>
         </nav>
     </header>
