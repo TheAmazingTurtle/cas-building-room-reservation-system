@@ -23,9 +23,9 @@ $_SESSION['current_page'] = "request";
         <h3>CAS Building Room Reservation System</h3>
         <nav>
             <a href="student_dashboard.php">Dashboard</a>
-            <a href="student_request.php">Request</a>
             <a href="student_archive.php">Archive</a>
             <a href="logout.php">Logout</a>
+            <a href="edit-details.php">Edit Details</a>
         </nav>
     </header>
 

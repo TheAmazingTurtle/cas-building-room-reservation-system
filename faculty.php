@@ -12,18 +12,20 @@ $facultyResult = $stmt->get_result();
 
 if ($facultyResult -> num_rows > 0){
     while($faculty = $facultyResult -> fetch_assoc()){
+        $facultyStatus = $faculty['is_available'] ? "Yes" : "No";
+
         echo    "<div class='student-profile'>".
-                    "<p class='profile-faculty-id'>{$faculty['student_number']}</p>".
-                    "<p class='profile-faculty-name'>{$faculty['student_name']}</p>".
-                    "<p class='profile-division'>{$faculty['degree_program']}</p>".
-                    "<p class='profile-available'>{$faculty['year_level']}</p>".
+                    "<p class='profile-faculty-id'>{$faculty['faculty_id']}</p>".
+                    "<p class='profile-faculty-name'>{$faculty['faculty_name']}</p>".
+                    "<p class='profile-division'>{$faculty['division']}</p>".
+                    "<p class='profile-available'>$facultyStatus</p>".
                     "<div><button>Edit</button><button>Delete</button></div>".
                 "</div>";     
     }
 }
 else {
     echo    "<div>".
-                "<p class='no-faculty'>No Available Room Found</p>".
+                "<p class='no-faculty'>No Faculty Registered in Database</p>".
             "</div>";
 }
 
