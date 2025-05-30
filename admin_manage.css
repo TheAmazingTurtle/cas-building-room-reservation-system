@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+  background-color: #f4d7d7;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h3 {
+  font-size: 30px;
+  color: #333;
+}
+
+nav a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: #555;
+  font-size: 18px;
+  background-color: #f6eaea;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #e9c5c5;
+}
+
+/* Main Content */
+main {
+    flex: 1;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+main h2 {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Icon Container */
+#admin-manage-icon-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+/* Individual Icons */
+.manage-icon {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    width: 160px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.manage-icon img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.manage-icon h3 {
+    font-size: 1.1rem;
+    color: #1a73e8;
+}
+
+.manage-icon:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #e0e0e0;
+    font-size: 0.9rem;
+    color: #555;
+}

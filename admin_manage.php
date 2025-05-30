@@ -16,7 +16,7 @@ $_SESSION['current_page'] = "manage";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="admin_manage.css">
 </head>
 <body>
     <header>
@@ -33,15 +33,15 @@ $_SESSION['current_page'] = "manage";
         <h2>Manage:</h2>
         <div id="admin-manage-icon-container" onclick="window.location.href='admin_manage_user.php'">
             <div class="manage-icon">
-                <img src="" alt="User Icon">
+                <img src="user.png" alt="User Icon">
                 <h3>Users</h3>
             </div>
             <div class="manage-icon" onclick="window.location.href='admin_manage_room.php'">
-                <img src="" alt="Room Icon">
+                <img src="room.png" alt="Room Icon">
                 <h3>Rooms</h3>
             </div>
             <div class="manage-icon" onclick="window.location.href='admin_manage_reservation.php'">
-                <img src="" alt="Reservation Icon">
+                <img src="reserve.png" alt="Reservation Icon">
                 <h3>Reservation</h3>
             </div>
         </div>

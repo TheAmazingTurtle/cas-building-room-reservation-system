@@ -59,7 +59,7 @@ function formatDateTime($dateTime){
         </div>
     </main>
     <footer>
-        <p>2023 Student Dashboard. All rights reserved.</p>
+        <p>2023 Faculty Dashboard. All rights reserved.</p>
     </footer>
 </body>
 </html>
