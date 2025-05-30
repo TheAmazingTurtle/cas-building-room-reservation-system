@@ -23,7 +23,6 @@ $_SESSION['current_page'] = "request";
         <h3>CAS Building Room Reservation System</h3>
         <nav>
             <a href="faculty_dashboard.php">Dashboard</a>
-            <a href="faculty_request.php">Request</a>
             <a href="faculty_archive.php">Archive</a>
             <a href="logout.php">Logout</a>
         </nav>

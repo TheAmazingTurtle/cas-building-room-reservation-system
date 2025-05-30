@@ -86,12 +86,25 @@ span{
   text-align: center;
 }
 
+.faculty-archive p{
+  width: calc(100%/6);
+  text-align: center;
+}
+
 .faculty-scrollable {
-  padding: 14px;
-  background-color: #fafafa;
-  border-bottom: 1px solid #eee;
-  font-size: 15px;
-  vertical-align: middle;
+   display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.scroll-item{
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  margin: 0 10px;
+  align-items: center;
 }
 
 footer {
@@ -115,8 +128,4 @@ button, .action-btn {
 
 button:hover, .action-btn:hover {
     background-color: #bbb;
-}
-
-.hidden {
-    display: none !important; 
 }

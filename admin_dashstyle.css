@@ -1,4 +1,4 @@
-* {
+* {                 /*hindi mo pa na push ang para sa row*/ 
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -111,15 +111,25 @@ span{
     color: white;
     font-size: 16px;
 }
+.admin-faculty-request p, .admin-student-request p{
+  width: calc(100% / 6);
+  text-align: center;
+}
 
 .admin-scrollable {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* same number of <p> elements */
+    display: flex;
+    flex-direction: column;
     gap: 10px;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    align-items: center;
-    text-align: center;
+    height: 300px;
+    overflow-y: scroll;
+}
+
+.scroll-item{
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  margin: 0 10px;
+  align-items: center;
 }
 
 footer {
@@ -143,8 +153,4 @@ button, .action-btn {
 
 button:hover, .action-btn:hover {
     background-color: #bbb;
-}
-
-.hidden {
-    display: none !important; 
 }
