@@ -1,0 +1,525 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+header {
+  background-color: #f4d7d7;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h3 {
+  font-size: 30px;
+  color: #333;
+}
+
+nav a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: #555;
+  font-size: 18px;
+  background-color: #f6eaea;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+  background-color: #e9c5c5;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+}
+
+.request-search-body {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+ 
+.request-search-bar {
+  width: 250px;
+  padding: 0.5rem 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px 0 0 8px;
+  font-size: 1rem;
+}
+
+form button {
+  padding: 0.5rem 1rem;
+  border: 2px solid #ddd;
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+  background-color: #f7dada;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background-color: #fbb;
+}
+
+.request-filter-container {
+  background-color: #fff4f4;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 250px;
+}
+
+.request-room-option-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1000px;
+    height: 600px;
+    gap: 10px;
+}
+
+.header-category {
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    font-size: 0.5rem;
+    font-weight: bold; 
+    margin-top: 20px;
+    
+}
+
+.header-category h1 {
+    text-align: center;
+}
+
+
+.request-room-option-container > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.room-option {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.room-option:hover {
+  background-color: rgba(173, 216, 230, 0.3); /* light blue tint */
+  border-radius: 8px; /* optional */
+}
+
+
+.room-name {
+    width: 30%;
+}
+
+.room-type {
+    width: 40%;
+}
+
+.room-floor {
+    width: 20%;
+}
+
+.room-capacity {
+    width: 10%;
+}
+
+
+.room-not-found {
+    width: 100%;
+}
+    
+.room-information-container {
+    border-collapse: collapse;
+}
+
+.room-information-container td {
+    width: 500px;
+}
+
+.room-information-container td > strong {
+    display: inline-block;
+    width: 50%;
+    text-align: right;
+}
+
+.room-information-container tr:nth-child(4) > td {
+    text-align: center;
+}
+
+
+.class-schedule-container {
+    width: 1000px;
+    text-align: center;
+    border-collapse: collapse;
+    height: 750px;
+}
+
+.room-request-form-container {
+    width: 700px;
+    height: 700px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.room-request-form-container > form {
+    width: 48%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.room-request-form-container > div {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.room-request-form-container > form > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.room-request-form-container > form > div > label {
+    width: 150px;
+}
+
+.room-request-form-container > form > div > input {
+    width: 200px;
+}
+
+.room-request-form-container > form > div > textarea{
+    resize: none;
+}
+
+.request-filter-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.request-filter-categories {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.request-filter-categories > div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+footer {
+  text-align: center;
+  font-size: 20px !important;
+  padding: 15px;
+  color: #777;
+}
+
+
+/* Reset and Base Styles 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #fdfdfd;
+  color: #333;
+  line-height: 1.6;
+}
+
+header {
+  background-color: #f7dada;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0 0 12px 12px;
+}
+
+header h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+header nav a {
+  text-decoration: none;
+  margin-left: 1rem;
+  color: #333;
+  font-weight: bold;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: background-color 0.3s;
+}
+
+header nav a:hover {
+  background-color: #fbb;
+}
+
+/* Main Layout 
+main {
+  padding: 2rem;
+}
+
+.request-search-body {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Search Bar 
+.request-search-bar {
+  width: 250px;
+  padding: 0.5rem 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px 0 0 8px;
+  font-size: 1rem;
+}
+
+form button {
+  padding: 0.5rem 1rem;
+  border: 2px solid #ddd;
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+  background-color: #f7dada;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background-color: #fbb;
+}
+
+/* Room Options 
+.request-room-option-container {
+  margin-top: 1rem;
+  background-color: #fff4f4;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.request-room-option-container h4 {
+  color: #999;
+  text-align: center;
+}
+
+/* Filter Container 
+.request-filter-container {
+  background-color: #fff4f4;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 250px;
+}
+
+.request-filter-container h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.request-filter-categories > div {
+  margin-bottom: 1rem;
+}
+
+.request-filter-categories label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.capacity-input {
+  width: 100%;
+  padding: 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.request-filter-container button {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #f7dada;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.request-filter-container button:hover {
+  background-color: #fbb;
+}
+
+/* Footer 
+footer {
+  margin-top: 3rem;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  background-color: #f7f7f7;
+  border-top: 1px solid #ddd;
+}
+
+/* Utility Classes 
+.hidden {
+  display: none;
+}
+
+/* Responsive Layout 
+@media (min-width: 768px) {
+  .request-search-body {
+    flex-wrap: nowrap;
+    align-items: flex-start;
+  }
+
+  .request-search-body > div:first-child {
+    flex: 2;
+  }
+
+  .request-filter-container {
+    flex: 1;
+  }
+}
+
+
+/*.user-info {
+  display: flex;
+  align-items: center;
+  background-color: #f3d6d6;
+  padding: 20px;
+  /*margin: 20px;
+  gap: 20px;
+}
+p{
+    font-size: 20px;
+}
+span{
+    font-weight: bold;
+}
+
+.profile-pic {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #ccc;
+  object-fit: cover;
+}
+
+/* Reservation Section 
+.student-reservations {
+  background-color: #fff;
+  margin: 20px;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+.student-reservations h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #222;
+  text-align: center;
+}
+
+/* Table Styles 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+thead {
+  background-color: #d4b3b3;
+}
+
+thead th {
+  padding: 12px;
+  text-align: center;
+  font-size: 16px;
+  color: #444;
+}
+
+tbody td {
+  padding: 14px;
+  background-color: #fafafa;
+  border-bottom: 1px solid #eee;
+  font-size: 15px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+tbody tr:nth-child(even) td {
+  background-color: #f3f3f3;
+}
+
+td:last-child {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+td button, td a {
+  padding: 6px 10px;
+  font-size: 13px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #333;
+  background-color: #e0e0e0;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  left:20%;
+}
+
+td button:hover, td a:hover {
+  background-color: #ccc;
+}
+
+footer {
+  text-align: center;
+  font-size: 10px !important;
+  padding: 15px;
+  color: #777;
+}*/

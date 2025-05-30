@@ -48,15 +48,16 @@ if ($reservationResult->num_rows > 0) {
     $reservationId = $reservation['faculty_reservation_id'];
 
     echo    "<p><strong>Reservation ID:</strong>$reservationId</p>".
-            "<p><strong>Requestee:</strong>".htmlspecialchars($reservation['faculty_name'])."</p>".
-            "<p><strong>Room Name:</strong>".htmlspecialchars($reservation['room_name'])."</p>".
-            "<p><strong>Start Time:</strong>".htmlspecialchars($timeStart)."</p>".
-            "<p><strong>End Time:</strong>".htmlspecialchars($timeEnd)."</p>".
-            "<p><strong>Request Date:</strong>".htmlspecialchars($requestDate)."</p>".
-            "<p><strong>Purpose:</strong>".$reservation['purpose']."</p>".
-            "<p><strong>Approved by (Admin):</strong>".htmlspecialchars($reservation['admin_name'] ?? 'N/A')."</p>".
-            "<p><strong>Admin Remark:</strong>".htmlspecialchars($reservation['admin_remark'] ?? 'N/A')."</p>".
-            "<p><strong>Status:</strong>".$status."</p>";        
+            "<p><strong>Requestee:</strong>{$reservation['faculty_name']}</p>".
+            "<p><strong>Room Name:</strong>{$reservation['room_name']}</p>".
+            "<p><strong>Head Count</strong>{$reservation['head_count']}</p>".
+            "<p><strong>Start Time:</strong>$timeStart</p>".
+            "<p><strong>End Time:</strong>$timeEnd</p>".
+            "<p><strong>Request Date:</strong>$requestDate</p>".
+            "<p><strong>Purpose:</strong>{$reservation['purpose']}</p>".
+            "<p><strong>Approved by (Admin):</strong>".($reservation['admin_name'] ?? 'N/A')."</p>".
+            "<p><strong>Admin Remark:</strong>".($reservation['admin_remark'] ?? 'N/A')."</p>".
+            "<p><strong>Status:</strong>$status</p>";        
     if (!$isEditable) {
         exit();
     }
@@ -67,7 +68,7 @@ if ($reservationResult->num_rows > 0) {
         case 'faculty':
             if ($isCancellable) {
                 echo "<form action='cancel_reservation.php' method='post'>
-                        <input type='hidden' name='reservation_id' value='$reservationId'>
+                        <input type='hidden' name='reservation-id' value='$reservationId'>
                         <button type='submit'>Cancel</button>
                     </form>";
             }
@@ -81,18 +82,16 @@ if ($reservationResult->num_rows > 0) {
         case 'admin':
             echo    "<form action='approve_reservation.php' method='POST'>".
                         "<input class='hidden' name='reservation-id' value=$reservationId>".
-                        "<button type=submit>Approve</button>".
-                    "</form>".
-                    "<form action='deny_reservation.php' method='POST'>".
-                        "<input class='hidden' name='reservation-id' value=$reservationId>".
-                        "<button type=submit>Deny</button>".
+                        "<label for='remarks'>Remarks:</label><br>".
+                        "<textarea name='remarks' rows='4' cols='30' required style='resize: none;' placeholder='Put your remarks here...'></textarea><br>".
+                        "<button type='submit' name='is-approved' value='1'>Approve</button>".
+                        "<button type='submit' name='is-approved' value='0' >Deny</button>".
                     "</form>";
             break;
         default:
             echo "<p>Invalid user role.</p>";
             break;
     }
-
     echo "</div>";
 
 } else {

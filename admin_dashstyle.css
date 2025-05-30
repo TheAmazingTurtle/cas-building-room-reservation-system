@@ -64,7 +64,7 @@ span{
 }
 
 /* Reservation Section */
-.student-reservations {
+.admin-approval-requests {
   background-color: #fff;
   margin: 20px;
   padding: 25px;
@@ -74,67 +74,52 @@ span{
   flex-direction: column;
 }
 
-.student-reservations h2 {
+.admin-approval-requests h2 {
   font-size: 22px;
   margin-bottom: 20px;
   color: #222;
   text-align: center;
+  margin-top: 0;
+  margin-bottom: 20px;
 }
 
-/* Table Styles */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 12px;
-  overflow: hidden;
+/* Containers */
+.admin-faculty-request {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
-thead {
-  background-color: #d4b3b3;
+.admin-faculty-request h3{
+    font-size: 20px;
+    color: #333;
 }
 
-thead th {
-  padding: 12px;
-  text-align: center;
-  font-size: 16px;
-  color: #444;
+.admin-student-request h3{
+    font-size: 20px;
+    color: #333;
 }
 
-tbody td {
-  padding: 14px;
-  background-color: #fafafa;
-  border-bottom: 1px solid #eee;
-  font-size: 15px;
-  vertical-align: middle;
-  text-align: center;
+/* Table-like header */
+.admin-header {
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    background-color: #d4a6a6;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
 }
 
-tbody tr:nth-child(even) td {
-  background-color: #f3f3f3;
-}
-
-td:last-child {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
-}
-
-td button, td a {
-  padding: 6px 10px;
-  font-size: 13px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  color: #333;
-  background-color: #e0e0e0;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  left:20%;
-}
-
-td button:hover, td a:hover {
-  background-color: #ccc;
+.admin-scrollable {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* same number of <p> elements */
+    gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    align-items: center;
+    text-align: center;
 }
 
 footer {
@@ -142,6 +127,22 @@ footer {
   font-size: 10px !important;
   padding: 15px;
   color: #777;
+}
+
+/* Buttons inside table */
+button, .action-btn {
+    background-color: #ddd;
+    color: #333;
+    border: none;
+    padding: 6px 12px;
+    margin: 0 2px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover, .action-btn:hover {
+    background-color: #bbb;
 }
 
 .hidden {

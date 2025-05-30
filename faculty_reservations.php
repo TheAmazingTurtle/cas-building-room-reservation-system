@@ -20,7 +20,7 @@ switch ($_SESSION['current_page']){
         break;
 }
 
-$stmt = $conn->prepare("SELECT faculty_reservation_id, room_name, time_start, time_end, request_date, is_active, is_admin_approved
+$stmt = $conn->prepare("SELECT *
                         FROM faculty_reservation
                         WHERE faculty_id = ?$restriction");
 
@@ -58,27 +58,11 @@ if ($facultyReservationResult -> num_rows > 0){
             $status = "Completed";
         }
 
-        $actionButtons = "";
-
-
-        switch ($_SESSION['current_page']){
-            case 'dashboard':
-                $actionButtons =    $actionButtons."<form action='archive_reservation.php' method='post'>".
-                                        "<input type='text' style='display:none;' name='reservation-id' value='$reservationId'>".
-                                        "<input type='text' style='display:none;' name='action-mode' value='1'>".
-                                        "<button type='submit'>Archive</button>".
-                                    "</form>";
-                break;
-            case 'archive':
-                $actionButtons =    $actionButtons."<form action='archive_reservation.php' method='post'>".
-                                        "<input type='text' style='display:none;' name='reservation-id' value='$reservationId'>".
-                                        "<input type='text' style='display:none;' name='action-mode' value='0'>".
-                                        "<button type='submit'>Restore</button>".
-                                    "</form>";
-                break;
-            default:
-                break;
-        }
+        $actionButtons =    "<form action='archive_reservation.php' method='post'>".
+                                "<input type='text' style='display:none;' name='reservation-id' value='$reservationId'>".
+                                "<input type='text' style='display:none;' name='action-mode' value='". (!$reservation['is_archived']) ."'>".
+                                "<button type='submit'>".($reservation['is_archived'] ? 'Restore' : 'Archive')."</button>".
+                            "</form>";
         
         if ($isCancellable){
             $actionButtons =   $actionButtons."<form action='cancel_reservation.php' method='post'>".
@@ -91,7 +75,7 @@ if ($facultyReservationResult -> num_rows > 0){
         $timeStart =  formatDateTime($reservation["time_start"]);
         $requestDate = formatDate($reservation["request_date"]);
 
-        echo    "<div class='scroll-item' onclick=\"window.location.href='reservation.php?res_id={$reservation['faculty_reservation_id']}&action=more_details'\">".
+        echo    "<div class='scroll-item' onclick=\"window.location.href='reservation.php?res_id={$reservation['faculty_reservation_id']}&action=more_details&type=faculty'\">".
                     "<p>$reservationId</p>".
                     "<p>".$reservation["room_name"]."</p>".
                     "<p>$timeStart</p>".

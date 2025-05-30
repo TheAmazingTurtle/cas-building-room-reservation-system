@@ -20,7 +20,7 @@ switch ($_SESSION['current_page']){
         break;
 }
 
-$stmt = $conn->prepare("SELECT student_reservation_id, student_name, room_name, faculty_name, time_start, time_end, request_date, is_active, is_faculty_approved, is_admin_approved 
+$stmt = $conn->prepare("SELECT *
                         FROM student_reservation 
                         INNER JOIN student USING(student_number) 
                         INNER JOIN faculty USING(faculty_id) 
@@ -35,6 +35,8 @@ if ($studentReservationResult -> num_rows > 0){
 
     $now = new DateTime();
     while ($reservation = $studentReservationResult -> fetch_assoc()){
+
+        $reservationId = $reservation["student_reservation_id"];
 
         $status = null;
         $end = new DateTime($reservation['time_end']);
@@ -66,38 +68,25 @@ if ($studentReservationResult -> num_rows > 0){
             $status = "Completed";
         }
 
-        $actionButtons =    "<a href='reservation.php?res_id=". $reservation["student_reservation_id"] ."'><button>More Details</button></a>";
+        $actionButtons =    "<a href='reservation.php?res_id=$reservationId&action=more_details&type=student'><button>More Details</button></a>";
 
 
-        switch ($_SESSION['current_page']){
-            case 'dashboard':
-                $actionButtons =    $actionButtons."<form action='archive_reservation.php' method='post'>".
-                                        "<input type='text' style='display:none;' name='reservation-id' value='".$reservation["student_reservation_id"]."'>".
-                                        "<input type='text' style='display:none;' name='action-mode' value='1'>".
-                                        "<button type='submit'>Archive</button>".
-                                    "</form>";
-                break;
-            case 'archive':
-                $actionButtons =    $actionButtons."<form action='archive_reservation.php' method='post'>".
-                                        "<input type='text' style='display:none;' name='reservation-id' value='".$reservation["student_reservation_id"]."'>".
-                                        "<input type='text' style='display:none;' name='action-mode' value='0'>".
-                                        "<button type='submit'>Restore</button>".
-                                    "</form>";
-                break;
-            default:
-                break;
-        }
+        $actionButtons =   $actionButtons."<form action='archive_reservation.php' method='post'>".
+                                "<input type='text' style='display:none;' name='reservation-id' value='$reservationId'>".
+                                "<input type='text' style='display:none;' name='action-mode' value='". (!$reservation['is_archived']) ."'>".
+                                "<button type='submit'>".($reservation['is_archived'] ? 'Restore' : 'Archive')."</button>".
+                            "</form>";
         
         if ($isCancellable){
             $actionButtons =   $actionButtons."<form action='cancel_reservation.php' method='post'>".
-                                    "<input type='text' style='display:none;' name='reservation-id' value='".$reservation["student_reservation_id"]."'>".
+                                    "<input type='text' style='display:none;' name='reservation-id' value='$reservationId'>".
                                     "<button type='submit'>Cancel</button>".
                                 "</form>";
         }
 
 
         echo    "<tr>".
-                    "<td>".$reservation["student_reservation_id"]."</td>".
+                    "<td>$reservationId</td>".
                     "<td>".$reservation["student_name"]."</td>".
                     "<td>".$reservation["room_name"]."</td>".
                     "<td>".$reservation["faculty_name"]."</td>".
@@ -105,11 +94,11 @@ if ($studentReservationResult -> num_rows > 0){
                     "<td>".$reservation["request_date"]."</td>".
                     "<td>$status</td>".
                     "<td>$actionButtons</td>".
-                "</tr>"; 
+                "</tr>";
     }
 }
 else {
-    echo '<tr><td class="no-reservations" colspan="8">No reservations found.</td></tr>';
+    echo "<tr><td class='no-reservations' colspan='8'>No reservations found.</td></tr>";
 }
 
 $conn -> close();

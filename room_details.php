@@ -41,6 +41,7 @@ $roomFloor = $roomData['floor_number'];
 $roomCapacity = $roomData['capacity'];
 
 $_SESSION['room_name'] = $roomName;
+$_SESSION['room_capacity'] = $roomCapacity;
 ?>
 
 <html lang="en">

@@ -55,16 +55,7 @@ span{
     font-weight: bold;
 }
 
-.profile-pic {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: #ccc;
-  object-fit: cover;
-}
-
-/* Reservation Section */
-.student-reservations {
+.faculty-container {
   background-color: #fff;
   margin: 20px;
   padding: 25px;
@@ -74,67 +65,33 @@ span{
   flex-direction: column;
 }
 
-.student-reservations h2 {
+/* Archive */
+.faculty-header{
+    background-color: #d4b3b3;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+    border-radius: 12px;
+}
+
+.faculty-header h3 {
+    padding: 12px;
+    font-size: 16px;
+    color: #444;
+}
+
+.faculty-archive h2 {
   font-size: 22px;
   margin-bottom: 20px;
   color: #222;
   text-align: center;
 }
 
-/* Table Styles */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-thead {
-  background-color: #d4b3b3;
-}
-
-thead th {
-  padding: 12px;
-  text-align: center;
-  font-size: 16px;
-  color: #444;
-}
-
-tbody td {
+.faculty-scrollable {
   padding: 14px;
   background-color: #fafafa;
   border-bottom: 1px solid #eee;
   font-size: 15px;
   vertical-align: middle;
-  text-align: center;
-}
-
-tbody tr:nth-child(even) td {
-  background-color: #f3f3f3;
-}
-
-td:last-child {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  justify-content: center;
-}
-
-td button, td a {
-  padding: 6px 10px;
-  font-size: 13px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  color: #333;
-  background-color: #e0e0e0;
-  text-decoration: none;
-  transition: background-color 0.3s;
-  left:20%;
-}
-
-td button:hover, td a:hover {
-  background-color: #ccc;
 }
 
 footer {
@@ -142,6 +99,22 @@ footer {
   font-size: 10px !important;
   padding: 15px;
   color: #777;
+}
+
+/* Buttons inside table */
+button, .action-btn {
+    background-color: #ddd;
+    color: #333;
+    border: none;
+    padding: 6px 12px;
+    margin: 0 2px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover, .action-btn:hover {
+    background-color: #bbb;
 }
 
 .hidden {

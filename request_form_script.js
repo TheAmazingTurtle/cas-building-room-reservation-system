@@ -11,7 +11,7 @@ let approvedReservationSchedule = [];
 let pendingReservationSchedule = [];
 let hasConflict = true;
 
-let pageInitialized = false;
+let roomMaxCapacity = null;
 
 document.addEventListener("DOMContentLoaded", initializePage);
 
@@ -24,8 +24,16 @@ function initializePage() {
     document.getElementById('reservation-start').addEventListener('change', checkScheduleConflict);
     document.getElementById('reservation-end').addEventListener('change', checkScheduleConflict);
 
-    document.getElementById("student-request-form").addEventListener("submit", verifyStudentSubmission);
-    document.getElementById("faculty-request-form").addEventListener("submit", verifyFacultySubmission);
+    const studentForm = document.getElementById("student-request-form");
+    const facultyForm = document.getElementById("faculty-request-form");
+
+    if (studentForm){
+        studentForm.addEventListener("submit", verifyStudentSubmission);
+    } else if (facultyForm){
+        facultyForm.addEventListener("submit", verifyFacultySubmission);
+    }
+
+    roomMaxCapacity = parseInt(document.getElementById("room-max-capacity").textContent);
 
     checkScheduleConflict();
 }
@@ -44,6 +52,10 @@ function getFacultyNames() {
 function addAutocompleteFeature() {
     const input = document.getElementById('faculty-input');
     const suggestionsBox = document.getElementById('suggestions');
+
+    if (!input){
+        return;
+    }
 
     input.addEventListener('input', () => {
         const query = input.value.toLowerCase();
@@ -226,15 +238,21 @@ function verifyStudentSubmission(event) {
     const time_start = document.getElementById("reservation-start").value;
     const time_end = document.getElementById("reservation-end").value;
     const facultyInput = document.getElementById("faculty-input").value;
+    const headCount = document.getElementById("head-count").value;
     const purpose = document.getElementById("purpose").value;
 
-    if (!time_start || !time_end || !facultyInput || !purpose) {
+    if (!time_start || !time_end || !facultyInput || !headCount || !purpose) {
         alert("Please fill in all fields.");
         return;
     }
 
     if (!facultyNames.includes(facultyInput)) {
         alert("Please select a valid faculty member from the suggestions.");
+        return;
+    }
+
+    if (headCount > roomMaxCapacity){
+        alert("Head count exceeds room capacity");
         return;
     }
 
@@ -250,12 +268,18 @@ function verifyStudentSubmission(event) {
 function verifyFacultySubmission(event) {
     event.preventDefault();
 
+    const headCount = document.getElementById("head-count").value;
     const time_start = document.getElementById("reservation-start").value;
     const time_end = document.getElementById("reservation-end").value;
     const purpose = document.getElementById("purpose").value;
 
-    if (!time_start || !time_end || !purpose) {
+    if (!headCount || !time_start || !time_end || !purpose) {
         alert("Please fill in all fields.");
+        return;
+    }
+
+    if (headCount > roomMaxCapacity){
+        alert("Head count exceeds room capacity");
         return;
     }
 
